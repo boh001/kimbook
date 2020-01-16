@@ -10,6 +10,8 @@ import passport from "passport";
 import routes from "./routes";
 import initRouter from "./routers/initRouter";
 import globalVariable from "./middleware";
+import "./passport";
+import userRouter from "./routers/userRouter";
 
 const app = express();
 
@@ -37,5 +39,6 @@ app.use(passport.session());
 
 app.use(globalVariable);
 app.use(routes.home, initRouter);
+app.use(routes.user, userRouter);
 
 export default app;

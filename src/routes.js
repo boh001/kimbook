@@ -8,10 +8,17 @@ const PROFILE = "/:id/profile";
 
 const routes = {
   home: HOME,
+  user: USER,
   join: JOIN,
   login: LOGIN,
   logout: LOGOUT,
-  profile: PROFILE
+  profile: id => {
+    if (id) {
+      return `${USER}${PROFILE}`;
+    } else {
+      return PROFILE;
+    }
+  }
 };
 
 export default routes;
