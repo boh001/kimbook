@@ -1,7 +1,6 @@
 {
   "name": "kimbook",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev:server": "cd src && nodemon --exec babel-node init.js",
@@ -26,6 +25,7 @@
     "express-session": "^1.17.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "helmet": "^3.21.2",
+    "mongo": "^0.1.0",
     "mongoose": "^5.8.7",
     "morgan": "^1.9.1",
     "node-sass": "^4.13.0",
@@ -40,5 +40,14 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boh001/kimbook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/boh001/kimbook/issues"
+  },
+  "homepage": "https://github.com/boh001/kimbook#readme",
+  "description": ""
 }
