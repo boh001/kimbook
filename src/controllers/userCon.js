@@ -95,14 +95,7 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 export const profile = (req, res) => {
-<<<<<<< HEAD
-  const {
-    user: { name, nickname, email }
-  } = req;
-  res.render("profile", { name, nickname, email });
-=======
   res.render("profile");
->>>>>>> eb7153bd32ab846744e55382c6918b55812bf1ca
 };
 export const getEditProfile = (req, res) => {
   const {
