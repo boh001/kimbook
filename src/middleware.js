@@ -1,9 +1,11 @@
 import routes from "./routes";
+import multer from "multer";
 
-const globalVariable = (req, res, next) => {
+export const globalVariable = (req, res, next) => {
   res.locals.routes = routes;
-  res.locals.users = req.user || false;
+  res.locals.user = req.user || false;
   next();
 };
 
-export default globalVariable;
+const upload = multer({ dest: "uploads/images/" });
+export const imgUpload = upload.single("avatarUrl");

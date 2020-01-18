@@ -2,13 +2,13 @@ header.header
     .header__sticky
         .sticky__home
             a(href=routes.home) HOME
-        if !users
+        if !user
             .sticky__join 
                 a(href=routes.join) JOIN
             .sticky__login
                 a(href=routes.login) LOGIN
         else
             .sticky__join 
-                a(href=routes.profile(users.id)) PROFILE
+                a(href=routes.profile(user.id)) PROFILE
             .sticky__login
                 a(href=routes.logout) LOGOUT

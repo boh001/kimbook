@@ -1,0 +1,11 @@
+extends layouts/main
+block content 
+    .editProfile
+        form(action=routes.editProfile(user.id), method="post")
+            input(type="text", name="name", value = name) 
+            input(type="text", name="nickname", value = nickname) 
+            input(type="text", name="email", value = email) 
+            input(type="password", name="oldPassword", placeholder="oldPassword")
+            input(type="password", name="newPassword", placeholder="newPassword")
+            input(type="password", name="newPassword2", placeholder="verify newPassword")
+            input(type="submit", value="submit")
