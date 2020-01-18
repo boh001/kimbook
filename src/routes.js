@@ -2,6 +2,7 @@ const HOME = "/";
 const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
+const AUTH = "/auth";
 
 const USER = "/user";
 const PROFILE = "/:id/profile";
@@ -26,7 +27,12 @@ const routes = {
     } else {
       return EDITPROFILE;
     }
+<<<<<<< HEAD
   }
+=======
+  },
+  auth: AUTH
+>>>>>>> eb7153bd32ab846744e55382c6918b55812bf1ca
 };
 
 export default routes;

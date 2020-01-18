@@ -1,3 +1,8 @@
 extends layouts/main
 block content 
-    .home home
+    if user
+        .home
+            form.home__write(action=routes.home, method="post",enctype="multipart/form-data")
+                input.write__text(type="text", name="title", required=true)
+                input.write__text(type="text", name="text", required=true)
+                input.write__content(type="file", name="content", required=true)

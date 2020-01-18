@@ -1,8 +1,15 @@
 extends layouts/main
 block content 
     .profile
+<<<<<<< HEAD
         .profile__name #{name}
         .profile__nickname #{nickname}
         .profile__email #{email}
+=======
+        img.profile__avatar(src=`/${user.avatarUrl}`,width ="50px",height="50px") 
+        .profile__name= user.name
+        .profile__nickname= user.nickname
+        .profile__email= user.email
+>>>>>>> eb7153bd32ab846744e55382c6918b55812bf1ca
     button.profile__btn
         a(href=routes.editProfile(user.id)) editProfile
