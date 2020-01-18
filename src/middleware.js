@@ -7,5 +7,5 @@ export const globalVariable = (req, res, next) => {
   next();
 };
 
-const upload = multer({ dest: "uploads/images/" });
-export const imgUpload = upload.single("avatarUrl");
+const upload = multer({ dest: "uploads/" });
+export const contentUpload = upload.single("content");

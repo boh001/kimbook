@@ -4,7 +4,7 @@ block content
         form(action=routes.join, method="post",enctype="multipart/form-data")
             .fileUpload
                 label(for="avatar") Avatar
-                input(type="file", name="avatarUrl", accept="image/*")
+                input(type="file", name="content", accept="image/*")
             input(type="text", name="name", placeholder="Full Name",required=true)        
             input(type="text", name="nickname", placeholder="Full Name",required=true)        
             input(type="email", name="email", placeholder="Email",required=true)

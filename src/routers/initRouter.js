@@ -10,14 +10,14 @@ import {
   verifyEmail,
   checkAuth
 } from "../controllers/userCon";
-import { getHome } from "../controllers/homeCon";
-import { imgUpload } from "../middleware";
+import { getHome, postHome } from "../controllers/homeCon";
+import { contentUpload } from "../middleware";
 
 const initRouter = express.Router();
 initRouter.get(routes.home, getHome);
-initRouter.post(routes.home);
+initRouter.post(routes.home, contentUpload, postHome);
 initRouter.get(routes.join, getJoin);
-initRouter.post(routes.join, imgUpload, postJoin, verifyEmail);
+initRouter.post(routes.join, contentUpload, postJoin, verifyEmail);
 initRouter.get(routes.login, getLogin);
 initRouter.post(routes.login, postLogin, checkAuth);
 initRouter.get(routes.logout, logout);

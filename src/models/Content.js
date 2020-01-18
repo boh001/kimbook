@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
 
 const ContentSchema = new mongoose.Schema({
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  },
+  author: String,
   title: String,
   text: String,
   fileUrl: String,
