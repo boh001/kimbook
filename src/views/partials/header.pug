@@ -1,14 +1,21 @@
-header.header
-    .header__sticky
-        .sticky__home
+header.header    
+    .header__search
+        .search__home
             a(href=routes.home) HOME
+        .search__bar
+            form(action=routes.search, method="get").bar__form
+                input(type="text", name="search").bar__input
+                input(type="submit", value="click").bar__submit
+    .header__users
         if !user
-            .sticky__join 
+            .users__join 
                 a(href=routes.join) JOIN
-            .sticky__login
+            .users__login
                 a(href=routes.login) LOGIN
         else
-            .sticky__join 
-                a(href=routes.profile(user.id)) PROFILE
-            .sticky__login
+            .users__avatar
+                img.avatar__img(src=`/${user.avatarUrl}`)
+            .users__join 
+                a(href=routes.profile(user.id))=user.nickname
+            .users__login
                 a(href=routes.logout) LOGOUT

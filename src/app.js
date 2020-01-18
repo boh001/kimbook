@@ -18,7 +18,7 @@ const app = express();
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "static")));
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 app.use(morgan("dev"));
 app.use(helmet());
 app.use(express.json());

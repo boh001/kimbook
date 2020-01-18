@@ -1,26 +1,34 @@
 extends layouts/main
-block content 
-    if user
-        .home
-            form.home__write(action=routes.home, method="post",enctype="multipart/form-data")
-                input.write__text(type="text", name="title", placeholder="title", required=true)
-                input.write__text(type="text", name="text", placeholder="text", required=true)
-                input.write__content(type="file", name="content")
-                input.write__submit(type="submit", value="submit")
-        .home__content
+block content
+    .main__sub
+        h1 hi
+    .main__home 
+        if user
+            .home
+                .home__writeLogo
+                    span 게시물 만들기
+                form(action=routes.home, method="post",enctype="multipart/form-data")
+                    .home__write
+                        img.write__avatar(src=`/${user.avatarUrl}`)
+                        input.write__text(type="text", name="text", placeholder="text", required=true)
+                    .home__writeContent
+                        input.writeContent__source(type="file", name="content")
+                        input.writeContent__submit(type="submit", value="submit")
+
             each content in contents
-                h1=content.author
-                h1=content.title
-                if content.fileUrl
-                img(src=content.fileUrl, width="200px",height="200px")
-                h2=content.text
-        .home__user
-            each u in users
-                if (user.nickname === u.nickname)
-                    .user
-                        span login
-                        h1=u.nickname
-                else
-                    .user
-                        span logout
-                        h1=u.nickname
+                .home__content
+                    h1=content.author
+                    h1=content.title
+                    if content.fileUrl
+                    img(src=content.fileUrl, width="200px",height="200px")
+                    h2=content.text
+    .main__user
+        each u in users
+            if (user.nickname === u.nickname)
+                .user
+                    span login
+                    h1=u.nickname
+            else
+                .user
+                    span logout
+                    h1=u.nickname
