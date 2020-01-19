@@ -7,7 +7,11 @@ const UserSchema = new mongoose.Schema({
   email: String,
   avatarUrl: String,
   birth: Date,
-  emailVerified: false
+  emailVerified: {
+    type: Boolean,
+    default: false
+  },
+  verifyKey: String
 });
 UserSchema.plugin(passportLocalMongoose, { usernameField: "nickname" });
 const model = mongoose.model("User", UserSchema);

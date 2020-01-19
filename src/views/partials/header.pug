@@ -1,7 +1,9 @@
 header.header    
     .header__search
         .search__home
-            a(href=routes.home) HOME
+            a(href=routes.home) 
+                i.fab.fa-kickstarter
+                
         .search__bar
             form(action=routes.search, method="get").bar__form
                 input(type="text", name="search").bar__input

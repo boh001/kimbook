@@ -21,7 +21,7 @@ export const postJoin = async (req, res, next) => {
     .randomBytes(256)
     .toString("base64")
     .substr(50, 5);
-  const verifyKey = keyOne + keyTwo;
+  const verifyKey = `${keyOne + keyTwo}`;
   req.body.verifyKey = verifyKey;
   if (password !== password2) {
     res.staus(404);
@@ -33,7 +33,8 @@ export const postJoin = async (req, res, next) => {
         name,
         nickname,
         email,
-        emailVerified: false
+        emailVerified: false,
+        verifyKey
       });
       await User.register(newUser, password);
       next();
@@ -66,26 +67,29 @@ export const getAuth = async (req, res) => {
   } = req;
 
   const user = await User.find({ verifyKey: key });
+  console.log(user);
 
-  if (user) {
-    await User.findOneAndUpdate(key, { emailVerified: true });
+  if (user.length !== 0) {
+    await User.findOneAndUpdate({ verifyKey: key }, { emailVerified: true });
     res.render("auth", { verify: '"Success"' });
   } else {
-    res.render("auth", { verify: "Fail" });
+    res.render("auth", { verify: '"Fail"' });
   }
 };
 
 export const getLogin = (req, res) => res.render("login");
 export const postLogin = passport.authenticate("local", {
-  failureRedirect: routes.login
+  failureRedirect: routes.login,
+  successRedirect: routes.home
 });
-export const checkAuth = (req, res) => {
+export const checkAuth = async (req, res, next) => {
   const {
-    user: { emailVerified }
+    body: { nickname }
   } = req;
-
-  if (emailVerified) {
-    res.redirect(routes.home);
+  const user = await User.find({ nickname, emailVerified: true });
+  console.log(user);
+  if (user.length === 1) {
+    next();
   } else {
     res.redirect(routes.login);
   }

@@ -10,7 +10,7 @@ block content
                 form(action=routes.home, method="post",enctype="multipart/form-data")
                     .home__write
                         img.write__avatar(src=`/${user.avatarUrl}`)
-                        input.write__text(type="text", name="text", placeholder="text", required=true)
+                        input.write__text(type="text", name="text", placeholder="text")
                     .home__writeContent
                         input.writeContent__source(type="file", name="content")
                         input.writeContent__submit(type="submit", value="submit")
@@ -18,7 +18,7 @@ block content
             each content in contents
                 .home__content
                     h1=content.author
-                    h1=content.title
+                    h1=content.createdAt
                     if content.fileUrl
                     img(src=content.fileUrl, width="200px",height="200px")
                     h2=content.text
