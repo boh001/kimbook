@@ -23,4 +23,5 @@ initRouter.get(routes.login, getLogin);
 initRouter.post(routes.login, checkAuth, postLogin);
 initRouter.get(routes.logout, logout);
 initRouter.get(routes.auth, getAuth);
+
 export default initRouter;

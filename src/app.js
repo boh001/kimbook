@@ -12,6 +12,7 @@ import initRouter from "./routers/initRouter";
 import { globalVariable } from "./middleware";
 import "./passport";
 import userRouter from "./routers/userRouter";
+import apiRouter from "./routers/apiRouter";
 
 const app = express();
 
@@ -40,5 +41,5 @@ app.use(passport.session());
 app.use(globalVariable);
 app.use(routes.home, initRouter);
 app.use(routes.user, userRouter);
-
+app.use(routes.api, apiRouter);
 export default app;

@@ -22,6 +22,16 @@ block content
                     if content.fileUrl
                     img(src=content.fileUrl, width="200px",height="200px")
                     h2=content.text
+                    .content__react
+                        .react__like#jsReact 0
+                        .react__reply 0
+                    .content__action
+                        .action__like 
+                            button#jsActionLike like
+                        .action__reply 
+                            a(href=routes.reply) reply
+
+
     .main__user
         each u in users
             if (user.nickname === u.nickname)

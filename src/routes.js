@@ -5,6 +5,11 @@ const LOGOUT = "/logout";
 const AUTH = "/auth";
 const SEARCH = "/search";
 
+//API
+const API = "/api";
+const LIKE = "/:id/like";
+const REPLY = "/:id/reply";
+
 const USER = "/user";
 const PROFILE = "/:id/profile";
 const EDITPROFILE = "/:id/editProfile";
@@ -16,6 +21,9 @@ const routes = {
   join: JOIN,
   login: LOGIN,
   logout: LOGOUT,
+  api: API,
+  like: LIKE,
+  reply: REPLY,
   profile: id => {
     if (id) {
       return `${USER}/${id}/profile`;

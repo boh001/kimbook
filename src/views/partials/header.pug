@@ -18,6 +18,6 @@ header.header
             .users__avatar
                 img.avatar__img(src=`/${user.avatarUrl}`)
             .users__join 
-                a(href=routes.profile(user.id))=user.nickname
+                a#jsUsersJoin(href=routes.profile(user.id))=user.nickname
             .users__login
                 a(href=routes.logout) LOGOUT

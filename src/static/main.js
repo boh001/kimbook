@@ -3553,6 +3553,17 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 
 /***/ }),
 
+/***/ "./assets/js/contentReact.js":
+/*!***********************************!*\
+  !*** ./assets/js/contentReact.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var reactLike = document.getElementById(\"jsReact\");\nvar actionLike = document.getElementById(\"jsActionLike\");\nvar urlcode = document.getElementById(\"jsUsersJoin\").href;\n\nvar upLike = function upLike() {\n  var userId = urlcode.split(\"/user\")[1].split(\"/\")[1];\n  fetch(\"/api/\".concat(userId, \"/like\"), {\n    method: \"POST\",\n    headers: {\n      \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify({\n      id: userId\n    })\n  }).then(function (res) {\n    reactLike.innerText = parseInt(reactLike.innerText) + 1;\n  })[\"catch\"](function (error) {\n    console.log(error);\n  });\n};\n\nvar handleReactLike = function handleReactLike(event) {\n  event.preventDefault();\n  upLike();\n};\n\nvar init = function init() {\n  actionLike.addEventListener(\"click\", handleReactLike);\n};\n\nif (actionLike) {\n  init();\n}\n\n//# sourceURL=webpack:///./assets/js/contentReact.js?");
+
+/***/ }),
+
 /***/ "./assets/js/main.js":
 /*!***************************!*\
   !*** ./assets/js/main.js ***!
@@ -3561,7 +3572,7 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./assets/js/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _contentReact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contentReact */ \"./assets/js/contentReact.js\");\n/* harmony import */ var _contentReact__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_contentReact__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\n//# sourceURL=webpack:///./assets/js/main.js?");
 
 /***/ }),
 
@@ -3583,7 +3594,7 @@ eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./as
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! @babel/polyfill */\"../node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\boh00\\Documents\\GitHub\\kimbook2\\src\\assets\\js\\main.js */\"./assets/js/main.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./assets/js/main.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"../node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\boh00\\Documents\\GitHub\\kimbook\\src\\assets\\js\\main.js */\"./assets/js/main.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./assets/js/main.js?");
 
 /***/ })
 
