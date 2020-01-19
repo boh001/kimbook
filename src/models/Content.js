@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
+import { NULL } from "node-sass";
 
 const ContentSchema = new mongoose.Schema({
-  author: String,
+  authorName: String,
+  authorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   title: String,
   text: String,
   fileUrl: String,
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  like: {
+    type: Number,
+    default: 0
   }
 });
 

@@ -16,11 +16,12 @@ export const postHome = async (req, res) => {
   } = req;
   const createAt = Date.now;
   const {
-    user: { nickname }
+    user: { id, nickname }
   } = req;
   try {
     await Content.create({
-      author: nickname,
+      authorName: nickname,
+      authorId: id,
       fileUrl: path,
       title,
       text,
