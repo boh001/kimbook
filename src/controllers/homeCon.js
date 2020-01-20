@@ -9,10 +9,11 @@ export const getHome = async (req, res) => {
 };
 export const postHome = async (req, res) => {
   const {
-    body: { title, text }
+    body: { text }
   } = req;
+
   const {
-    file: { path }
+    file: { path, mimetype }
   } = req;
   const createAt = Date.now;
   const {
@@ -23,7 +24,7 @@ export const postHome = async (req, res) => {
       authorName: nickname,
       authorId: id,
       fileUrl: path,
-      title,
+      contentType: mimetype,
       text,
       createAt
     });

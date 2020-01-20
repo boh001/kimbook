@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { NULL } from "node-sass";
 
 const ContentSchema = new mongoose.Schema({
   authorName: String,
@@ -7,7 +6,7 @@ const ContentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-  title: String,
+  contentType: String,
   text: String,
   fileUrl: String,
   createdAt: {
@@ -15,6 +14,10 @@ const ContentSchema = new mongoose.Schema({
     default: Date.now
   },
   like: {
+    type: Number,
+    default: 0
+  },
+  view: {
     type: Number,
     default: 0
   }

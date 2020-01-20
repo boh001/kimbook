@@ -1,29 +1,45 @@
-const reactLike = document.getElementById("jsReact");
-const actionLike = document.getElementById("jsActionLike");
-const urlcode = document.getElementById("jsUsersJoin").href;
-const upLike = () => {
-  const userId = urlcode.split("/user")[1].split("/")[1];
+const actionLike = document.getElementsByClassName("jsActionLike");
+const video = document.getElementsByTagName("video");
 
-  fetch(`/api/${userId}/like`, {
+const upLike = (id, like) => {
+  fetch(`/api/${id}/like`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ id: userId })
+    body: JSON.stringify({ id })
   })
     .then(res => {
-      reactLike.innerText = parseInt(reactLike.innerText) + 1;
+      like.innerText = parseInt(like.innerText) + 1;
     })
     .catch(error => {
       console.log(error);
     });
 };
+const upView = () => {
+  console.log("hi");
+};
 const handleReactLike = event => {
   event.preventDefault();
-  upLike();
+  const element = event.path;
+  const contentLike = element[2].previousSibling;
+  const homeReactLike = contentLike.firstChild;
+  const homeContentId = element[3].id;
+  upLike(homeContentId, homeReactLike);
+};
+const handleView = event => {
+  event.preventDefault();
+  const element = event.path;
+  console.log(element);
+
+  const homeContentId = element[3].id;
+  upView(homeContentId);
 };
 const init = () => {
-  actionLike.addEventListener("click", handleReactLike);
+  const actionList = Array.from(actionLike);
+  const videoList = Array.from(video);
+  actionList.map(a => a.addEventListener("click", handleReactLike));
+  videoList.map(v => v.addEventListener("play", handleView));
 };
 if (actionLike) {
   init();

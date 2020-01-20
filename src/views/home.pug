@@ -16,18 +16,22 @@ block content
                         input.writeContent__submit(type="submit", value="submit")
 
             each content in contents
-                .home__content
-                    h1=content.author
+                .home__content(id=content.id)
+                    h1=content.authorName
                     h1=content.createdAt
-                    if content.fileUrl
-                    img(src=content.fileUrl, width="200px",height="200px")
+                    if (content.contentType.split("/")[0] === "image")
+                        img(src=content.fileUrl, width="200px",height="200px")
+                    else if (content.contentType.split("/")[0] === "video")
+                        video(src=content.fileUrl, width="200px",height="200px", type=content.contentType, controls=true)
                     h2=content.text
                     .content__react
-                        .react__like#jsReact=content.like
+                        .react__like=content.like
                         .react__reply 0
+                        if (content.contentType.split("/")[0] === "video")
+                            .react__view.jsReactView=content.view
                     .content__action
                         .action__like 
-                            button#jsActionLike like
+                            button.jsActionLike like
                         .action__reply 
                             a(href=routes.reply) reply
 

@@ -3560,7 +3560,7 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("var reactLike = document.getElementById(\"jsReact\");\nvar actionLike = document.getElementById(\"jsActionLike\");\nvar urlcode = document.getElementById(\"jsUsersJoin\").href;\n\nvar upLike = function upLike() {\n  var userId = urlcode.split(\"/user\")[1].split(\"/\")[1];\n  fetch(\"/api/\".concat(userId, \"/like\"), {\n    method: \"POST\",\n    headers: {\n      \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify({\n      id: userId\n    })\n  }).then(function (res) {\n    reactLike.innerText = parseInt(reactLike.innerText) + 1;\n  })[\"catch\"](function (error) {\n    console.log(error);\n  });\n};\n\nvar handleReactLike = function handleReactLike(event) {\n  event.preventDefault();\n  upLike();\n};\n\nvar init = function init() {\n  actionLike.addEventListener(\"click\", handleReactLike);\n};\n\nif (actionLike) {\n  init();\n}\n\n//# sourceURL=webpack:///./assets/js/contentReact.js?");
+eval("var actionLike = document.getElementsByClassName(\"jsActionLike\");\nvar video = document.getElementsByTagName(\"video\");\n\nvar upLike = function upLike(id, like) {\n  fetch(\"/api/\".concat(id, \"/like\"), {\n    method: \"POST\",\n    headers: {\n      \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify({\n      id: id\n    })\n  }).then(function (res) {\n    like.innerText = parseInt(like.innerText) + 1;\n  })[\"catch\"](function (error) {\n    console.log(error);\n  });\n};\n\nvar upView = function upView() {\n  console.log(\"hi\");\n};\n\nvar handleReactLike = function handleReactLike(event) {\n  event.preventDefault();\n  var element = event.path;\n  var contentLike = element[2].previousSibling;\n  var homeReactLike = contentLike.firstChild;\n  var homeContentId = element[3].id;\n  upLike(homeContentId, homeReactLike);\n};\n\nvar handleView = function handleView(event) {\n  event.preventDefault();\n  var element = event.path;\n  console.log(element);\n  var homeContentId = element[3].id;\n  upView(homeContentId);\n};\n\nvar init = function init() {\n  var actionList = Array.from(actionLike);\n  var videoList = Array.from(video);\n  actionList.map(function (a) {\n    return a.addEventListener(\"click\", handleReactLike);\n  });\n  videoList.map(function (v) {\n    return v.addEventListener(\"play\", handleView);\n  });\n};\n\nif (actionLike) {\n  init();\n}\n\n//# sourceURL=webpack:///./assets/js/contentReact.js?");
 
 /***/ }),
 
@@ -3594,7 +3594,7 @@ eval("// removed by extract-text-webpack-plugin\n\n//# sourceURL=webpack:///./as
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! @babel/polyfill */\"../node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\boh00\\Documents\\GitHub\\kimbook2\\src\\assets\\js\\main.js */\"./assets/js/main.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./assets/js/main.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"../node_modules/@babel/polyfill/lib/index.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\boh00\\Documents\\GitHub\\kimbook\\src\\assets\\js\\main.js */\"./assets/js/main.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./assets/js/main.js?");
 
 /***/ })
 
