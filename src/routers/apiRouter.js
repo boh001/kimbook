@@ -1,9 +1,9 @@
 import express from "express";
 import routes from "../routes";
-import { apiLike, apiReply } from "../controllers/apiCon";
+import { apiLike, apiView } from "../controllers/apiCon";
 
 const apiRouter = express.Router();
 
 apiRouter.post(routes.like, apiLike);
-apiRouter.post(routes.reply, apiReply);
+apiRouter.post(routes.view, apiView);
 export default apiRouter;

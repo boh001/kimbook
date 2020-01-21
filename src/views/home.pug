@@ -37,12 +37,13 @@ block content
 
 
     .main__user
-        each u in users
-            if (user.nickname === u.nickname)
-                .user
-                    span login
-                    h1=u.nickname
-            else
-                .user
-                    span logout
-                    h1=u.nickname
+        .user__lists
+            each u in users
+                if (user.nickname === u.nickname)
+                    .user
+                        span login
+                        h1=u.nickname
+                else
+                    .user
+                        span logout
+                        h1=u.nickname

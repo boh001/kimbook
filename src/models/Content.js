@@ -17,6 +17,10 @@ const ContentSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
+  likeUsers: {
+    type: Array,
+    default: []
+  },
   view: {
     type: Number,
     default: 0

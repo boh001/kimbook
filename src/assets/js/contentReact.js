@@ -10,7 +10,8 @@ const upLike = (id, like) => {
     body: JSON.stringify({ id })
   })
     .then(res => {
-      like.innerText = parseInt(like.innerText) + 1;
+      console.log(res);
+      like.innerText = parseInt(like.innerText) + res.like;
     })
     .catch(error => {
       console.log(error);

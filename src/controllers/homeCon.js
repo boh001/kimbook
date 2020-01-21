@@ -37,11 +37,6 @@ export const getSearch = async (req, res) => {
   const {
     query: { search }
   } = req;
-
-  console.log(search);
-
   const users = await User.find({ nickname: search });
-  console.log(users);
-
   res.render("search", { users });
 };

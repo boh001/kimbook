@@ -8,7 +8,7 @@ const SEARCH = "/search";
 //API
 const API = "/api";
 const LIKE = "/:id/like";
-const REPLY = "/:id/reply";
+const VIEW = "/:id/view";
 
 const USER = "/user";
 const PROFILE = "/:id/profile";
@@ -23,7 +23,7 @@ const routes = {
   logout: LOGOUT,
   api: API,
   like: LIKE,
-  reply: REPLY,
+  view: VIEW,
   profile: id => {
     if (id) {
       return `${USER}/${id}/profile`;
