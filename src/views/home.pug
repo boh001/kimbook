@@ -1,7 +1,10 @@
 extends layouts/main
 block content
     .main__sub
-        h1 hi
+        .sub__options
+            img.options__avatar(src=`/${user.avatarUrl}`)
+            .options__user=user.nickname
+
     .main__home 
         if user
             .home
@@ -28,12 +31,14 @@ block content
                         .react__like=content.like
                         .react__reply 0
                         if (content.contentType.split("/")[0] === "video")
-                            .react__view.jsReactView=content.view
+                            .react__view=content.view
                     .content__action
                         .action__like 
                             button.jsActionLike like
                         .action__reply 
                             a(href=routes.reply) reply
+                        .action__share
+                            .share share
 
 
     .main__user

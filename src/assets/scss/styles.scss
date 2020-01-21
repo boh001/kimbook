@@ -1,7 +1,7 @@
 @import "reset";
 @import "variable";
 body {
-  height: 2000px;
+  height: 8000px;
   background-color: $fb_bg;
   a {
     text-decoration: none;
@@ -16,11 +16,27 @@ body {
   justify-content: center;
   height: 100%;
   .main__sub {
-    width: 200px;
-    height: 100%;
+    position: sticky;
+    top: 40px;
+    width: 1021px;
+    display: flex;
+    justify-content: flex-end;
+    height: 1250px;
+    .sub__options {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 185px;
+      height: 100%;
+      .options__avatar {
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
   .main__home {
     width: 500px;
+    margin: 0px 10px 0px 10px;
     display: flex;
     flex-direction: column;
     .home {
@@ -57,22 +73,33 @@ body {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      .content__react {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+      .content__action {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
     }
   }
   .main__user {
     position: sticky;
     top: 40px;
-    border-left: solid 1px black;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
-    width: 200px;
+    width: 1021px;
     height: 1250px;
     .user__lists {
       display: flex;
       flex-direction: column;
+      height: 100%;
       align-items: flex-end;
       width: 100px;
+      border-left: solid 1px black;
     }
   }
 }

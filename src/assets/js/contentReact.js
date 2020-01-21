@@ -10,15 +10,32 @@ const upLike = (id, like) => {
     body: JSON.stringify({ id })
   })
     .then(res => {
-      console.log(res);
-      like.innerText = parseInt(like.innerText) + res.like;
+      return res.json();
+    })
+    .then(myJson => {
+      like.innerText = parseInt(like.innerText) + myJson.body;
     })
     .catch(error => {
       console.log(error);
     });
 };
-const upView = () => {
-  console.log("hi");
+const upView = (id, view) => {
+  fetch(`/api/${id}/view`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ id })
+  })
+    .then(res => {
+      return res.json();
+    })
+    .then(myJson => {
+      view.innerText = parseInt(view.innerText) + myJson.body;
+    })
+    .catch(error => {
+      console.log(error);
+    });
 };
 const handleReactLike = event => {
   event.preventDefault();
@@ -31,10 +48,10 @@ const handleReactLike = event => {
 const handleView = event => {
   event.preventDefault();
   const element = event.path;
-  console.log(element);
-
-  const homeContentId = element[3].id;
-  upView(homeContentId);
+  const homeContentId = element[1].id;
+  const contentReact = element[1].children;
+  const reactView = contentReact[4].lastElementChild;
+  upView(homeContentId, reactView);
 };
 const init = () => {
   const actionList = Array.from(actionLike);

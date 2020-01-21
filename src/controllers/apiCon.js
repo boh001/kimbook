@@ -12,24 +12,49 @@ export const apiLike = async (req, res) => {
     const content = await Content.findOne({ _id: id });
     const likeUsers = content.likeUsers;
     if (likeUsers.includes(nickname)) {
-      await content.update({
+      await content.updateOne({
         $inc: { like: -1 },
         $pull: { likeUsers: nickname }
       });
       res.status(200);
-      res.send("downLike");
+      res.send({
+        headers: {
+          "Content-Type": "text/html"
+        },
+        body: -1
+      });
     } else {
-      await content.update({
+      await content.updateOne({
         $inc: { like: 1 },
         $push: { likeUsers: nickname }
       });
       res.status(200);
-      res.send("upLike");
+      res.send({
+        headers: {
+          "Content-Type": "text/html"
+        },
+        body: 1
+      });
     }
   } catch (error) {
     console.log(error);
   }
 };
-export const apiView = (req, res) => {
-  console.log("reply");
+export const apiView = async (req, res) => {
+  const {
+    body: { id }
+  } = req;
+
+  try {
+    await Content.findOneAndUpdate({ _id: id }, { $inc: { view: 1 } });
+    res.status(200);
+    res.send({
+      headers: {
+        "Content-Type": "text/html"
+      },
+      body: 1
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
