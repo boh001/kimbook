@@ -1,9 +1,10 @@
 extends layouts/main
 block content
-    .main__sub
-        .sub__options
-            img.options__avatar(src=`/${user.avatarUrl}`)
-            .options__user=user.nickname
+    if user
+        .main__sub
+            .sub__options
+                img.options__avatar(src=`/${user.avatarUrl}`)
+                .options__user=user.nickname
 
     .main__home 
         if user
