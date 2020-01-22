@@ -295,6 +295,7 @@ body {
     position: -webkit-sticky;
     position: sticky;
     top: 40px;
+    bottom: 40px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
