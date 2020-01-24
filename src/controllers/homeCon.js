@@ -4,7 +4,17 @@ import User from "../models/User";
 
 export const getHome = async (req, res) => {
   const users = await User.find({});
-  const contents = await Content.find({});
+  const contents = await Content.find({}).populate([
+    {
+      path: "comments",
+      model: "Comment",
+      populate: {
+        path: "author",
+        model: "User"
+      }
+    }
+  ]);
+
   res.render("home", { contents, users });
 };
 export const postHome = async (req, res) => {

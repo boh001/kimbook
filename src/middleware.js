@@ -6,10 +6,8 @@ import path from "path";
 export const globalVariable = (req, res, next) => {
   res.locals.routes = routes;
   res.locals.user = req.user || false;
-
   next();
 };
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (!req.body.nickname) {

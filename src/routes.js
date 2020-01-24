@@ -1,3 +1,4 @@
+//HOME
 const HOME = "/";
 const JOIN = "/join";
 const LOGIN = "/login";
@@ -9,7 +10,9 @@ const SEARCH = "/search";
 const API = "/api";
 const LIKE = "/:id/like";
 const VIEW = "/:id/view";
+const COMMENT = "/:id/comment";
 
+//USER
 const USER = "/user";
 const PROFILE = "/:id/profile";
 const EDITPROFILE = "/:id/editProfile";
@@ -24,6 +27,13 @@ const routes = {
   api: API,
   like: LIKE,
   view: VIEW,
+  comment: id => {
+    if (id) {
+      return `${API}/${id}/comment`;
+    } else {
+      return COMMENT;
+    }
+  },
   profile: id => {
     if (id) {
       return `${USER}/${id}/profile`;
