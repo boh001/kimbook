@@ -55,21 +55,26 @@ block content
                             .action__share
                                 .share 공유하기
                         .content__comments
-                                img.comments__avatar(src=`/${user.avatarUrl}`, width="40px",height="40px")
-                                input.jsComment(type="text", name="comment", placeholder="please write comments")   
-                                ul.comments__lists
-                                    each comment in content.comments
-                                        .div(id=comment._id)
-                                            img(src=`/${comment.author.avatarUrl}`, width="40px",height="40px")
-                                            li=comment.description
-                                            button.jsCommentLike like
-                                            .comment__like
-                                                .like__icon 
-                                                    i.far.fa-thumbs-up
-                                                .like__count=comment.like
-                                            .comment__reComment
-                                                img.reComments__avatar(src=`/${user.avatarUrl}`, width="40px",height="40px")
-                                                input.jsReComment(type="text", name="comment", placeholder="please write comments")
+                            .comments__user
+                                img.miniAvatar2(src=`/${user.avatarUrl}`, width="40px",height="40px")
+                                input.user__text.jsComment(type="text", name="comment", placeholder="댓글을 입력하세요...")   
+                            .comments__lists
+                                each comment in content.comments
+                                    .comment__list(id=comment._id)
+                                        .list__list
+                                            img.miniAvatar2(src=`/${comment.author.avatarUrl}`, width="40px",height="40px")
+                                            .list__description
+                                                span.description__name #{comment.author.nickname}
+                                                span.description__text=comment.description
+                                        .list__react
+                                            .comment__like.jsCommentLike 좋아요
+                                            .comment__infoLike
+                                                span.infoLike__count=comment.like
+                                                span.infoLike__sub 개
+                                            .comment__show 답글보기
+                                        .comment__reComment
+                                            img.reComments__avatar(src=`/${user.avatarUrl}`, width="40px",height="40px")
+                                            input.jsReComment(type="text", name="comment", placeholder="please write comments")
 
 
                                         

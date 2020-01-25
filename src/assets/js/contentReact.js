@@ -70,18 +70,16 @@ const handleReactLike = event => {
   event.preventDefault();
   const element = event.path;
   const contentLike = element[2].previousSibling;
-  const homeReactLike = contentLike.firstChild;
+  const homeReactLike = contentLike.firstChild.children[1];
   const homeContentId = element[3].id;
   upLike(homeContentId, homeReactLike);
 };
 const handleView = event => {
   event.preventDefault();
   const element = event.path;
-  console.log(element);
   const homeContentId = element[1].id;
   const contentReact = element[1].children[3];
   const reactInfo = contentReact.lastChild;
-  console.log(reactInfo);
 
   if (video !== 0) {
     const reactView = reactInfo.lastChild;
@@ -94,18 +92,18 @@ const handleView = event => {
 const handleComment = event => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    const text = event.path[1].children[1].value;
+    const text = event.path[0].value;
     const ul = event.path[1].lastElementChild;
-    const reactReply = event.path[2].children[4].children[1];
-    const homeContentId = event.path[2].id;
+    const reactReply = event.path[3].children[3].lastChild.children[1];
+    const homeContentId = event.path[3].id;
     upComment(homeContentId, text, ul, reactReply);
-    event.path[1].children[1].value = "";
+    event.path[0].value = "";
   }
 };
 const handelRelpy = event => {
   event.preventDefault();
   const contentComments = event.path[2].nextElementSibling;
-  contentComments.style.display = "block";
+  contentComments.style.display = "flex";
 };
 const init = () => {
   const actionList = Array.from(actionLike);

@@ -369,8 +369,12 @@ table {
            -moz-box-align: center;
             -ms-flex-align: center;
                 align-items: center; }
-        .main__home .home__content .content__react .react__info .info__view {
-          margin-left: 7px; }
+        .main__home .home__content .content__react .react__info .info__replyText {
+          margin-right: 5px; }
+        .main__home .home__content .content__react .react__info .info__reply {
+          margin-right: 10px; }
+        .main__home .home__content .content__react .react__info .info__viewText {
+          margin-right: 5px; }
     .main__home .home__content .content__action {
       display: -webkit-box;
       display: -webkit-flex;
@@ -429,7 +433,125 @@ table {
       -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
     .main__home .home__content .content__comments {
-      display: none; }
+      display: none;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+         -moz-box-orient: vertical;
+         -moz-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      margin-top: 7px;
+      padding: 10px; }
+      .main__home .home__content .content__comments .comments__user {
+        width: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+           -moz-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+           -moz-box-align: center;
+            -ms-flex-align: center;
+                align-items: center; }
+        .main__home .home__content .content__comments .comments__user .user__text {
+          width: 90%;
+          height: 30px;
+          border: 1px solid #e9ebee;
+          -webkit-border-radius: 15px;
+             -moz-border-radius: 15px;
+                  border-radius: 15px;
+          padding-left: 15px;
+          background-color: #e9ebee; }
+      .main__home .home__content .content__comments .comment__list {
+        margin-top: 10px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+           -moz-box-orient: vertical;
+           -moz-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+           -moz-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+           -moz-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start; }
+        .main__home .home__content .content__comments .comment__list .list__list {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          margin-bottom: 3px; }
+          .main__home .home__content .content__comments .comment__list .list__list .list__description {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: start;
+            -webkit-justify-content: flex-start;
+               -moz-box-pack: start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+               -moz-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            height: 30px;
+            border: 1px solid #e9ebee;
+            -webkit-border-radius: 15px;
+               -moz-border-radius: 15px;
+                    border-radius: 15px;
+            padding: 0px 10px 0px 10px;
+            background-color: #e9ebee;
+            font-size: 16px; }
+            .main__home .home__content .content__comments .comment__list .list__list .list__description .description__name {
+              color: #4267b2;
+              font-size: 18px;
+              margin-right: 4px; }
+        .main__home .home__content .content__comments .comment__list .list__react {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+             -moz-box-pack: start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+             -moz-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          font-size: 11px;
+          padding-left: 50px; }
+          .main__home .home__content .content__comments .comment__list .list__react .comment__like {
+            margin-right: 3px; }
+          .main__home .home__content .content__comments .comment__list .list__react .comment__show {
+            margin-left: 8px; }
+        .main__home .home__content .content__comments .comment__list .comment__reComment {
+          display: none; }
 
 .main__user {
   position: -webkit-sticky;
@@ -520,12 +642,25 @@ body {
       color: white;
       font-size: 27px; }
 
+input:focus {
+  outline: none; }
+
 .miniAvatar {
   width: 40px;
   height: 40px;
   -webkit-border-radius: 50%;
      -moz-border-radius: 50%;
-          border-radius: 50%; }
+          border-radius: 50%;
+  border: 1px solid #e9ebee; }
+
+.miniAvatar2 {
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+  margin-right: 7px;
+  border: 1px solid #e9ebee; }
 
 .main {
   display: -webkit-box;
