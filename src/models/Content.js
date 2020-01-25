@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const ContentSchema = new mongoose.Schema({
-  authorName: String,
   authorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
@@ -9,10 +8,7 @@ const ContentSchema = new mongoose.Schema({
   contentType: String,
   text: String,
   fileUrl: String,
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
+  createdAt: String,
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -23,10 +19,12 @@ const ContentSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  likeUsers: {
-    type: Array,
-    default: []
-  },
+  likeUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ],
   view: {
     type: Number,
     default: 0

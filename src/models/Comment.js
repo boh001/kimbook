@@ -11,6 +11,17 @@ const CommentSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Comment"
     }
+  ],
+  createdAt: String,
+  like: {
+    type: Number,
+    default: 0
+  },
+  likeUsers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
   ]
 });
 

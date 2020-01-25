@@ -12,6 +12,10 @@ export const getHome = async (req, res) => {
         path: "author",
         model: "User"
       }
+    },
+    {
+      path: "authorId",
+      model: "User"
     }
   ]);
 
@@ -25,18 +29,27 @@ export const postHome = async (req, res) => {
   const {
     file: { path, mimetype }
   } = req;
-  const createAt = Date.now;
+  const getFormatDate = date => {
+    var year = date.getFullYear();
+    var month = 1 + date.getMonth();
+    month = month >= 10 ? month : "0" + month;
+    var day = date.getDate();
+    day = day >= 10 ? day : "0" + day;
+    return year + "-" + month + "-" + day;
+  };
+  const createdAt = getFormatDate(new Date());
+  console.log(createdAt);
+
   const {
-    user: { id, nickname }
+    user: { id }
   } = req;
   try {
     await Content.create({
-      authorName: nickname,
       authorId: id,
       fileUrl: path,
       contentType: mimetype,
       text,
-      createAt
+      createdAt
     });
     res.redirect(routes.home);
   } catch (error) {

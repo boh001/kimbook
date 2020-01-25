@@ -11,6 +11,8 @@ const API = "/api";
 const LIKE = "/:id/like";
 const VIEW = "/:id/view";
 const COMMENT = "/:id/comment";
+const RECOMMENT = "/:id/recomment";
+const COMMENTLIKE = "/:id/commentLike";
 
 //USER
 const USER = "/user";
@@ -27,13 +29,9 @@ const routes = {
   api: API,
   like: LIKE,
   view: VIEW,
-  comment: id => {
-    if (id) {
-      return `${API}/${id}/comment`;
-    } else {
-      return COMMENT;
-    }
-  },
+  comment: COMMENT,
+  recomment: RECOMMENT,
+  commentLike: COMMENTLIKE,
   profile: id => {
     if (id) {
       return `${USER}/${id}/profile`;

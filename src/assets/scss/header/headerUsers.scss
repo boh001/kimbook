@@ -1,0 +1,14 @@
+.header__users {
+  display: flex;
+  align-items: center;
+  .users__join {
+    margin-right: 10px;
+  }
+  .users__avatar {
+    margin-right: 5px;
+    .avatar__img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

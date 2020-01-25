@@ -1,5 +1,11 @@
 @import "reset";
 @import "variable";
+@import "./main/mainSub";
+@import "./main/mainHome";
+@import "./main/mainUser.scss";
+@import "./header/headerSearch";
+@import "./header/headerUsers";
+
 body {
   height: 8000px;
   background-color: $fb_bg;
@@ -11,98 +17,15 @@ body {
     }
   }
 }
+.miniAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 .main {
   display: flex;
   justify-content: center;
   height: 100%;
-  .main__sub {
-    position: sticky;
-    top: 40px;
-    width: 1021px;
-    display: flex;
-    justify-content: flex-end;
-    height: 1250px;
-    .sub__options {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 185px;
-      height: 100%;
-      .options__avatar {
-        width: 40px;
-        height: 40px;
-      }
-    }
-  }
-  .main__home {
-    width: 500px;
-    margin: 0px 10px 0px 10px;
-    display: flex;
-    flex-direction: column;
-    .home {
-      height: 155px;
-      border: 1px solid black;
-      margin: 20px 0px 20px 0px;
-      .home__writeLogo {
-        height: 30px;
-        border-bottom: 1px solid black;
-      }
-      .home__write {
-        display: flex;
-        align-items: center;
-        height: 75px;
-        .write__avatar {
-          width: 40px;
-          height: 40px;
-        }
-        .write__text {
-          width: 98.6%;
-        }
-      }
-      .home__writeContent {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-      }
-    }
-    .home__content {
-      border: 1px solid black;
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .content__react {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-      .content__action {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-      }
-    }
-  }
-  .main__user {
-    position: sticky;
-    top: 40px;
-    bottom: 0px;
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    width: 1021px;
-    height: 1250px;
-    .user__lists {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      align-items: flex-end;
-      width: 100px;
-      border-left: solid 1px black;
-    }
-  }
 }
 .header {
   position: sticky;
@@ -112,29 +35,4 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .header__search {
-    margin-right: 90px;
-    display: flex;
-    align-items: center;
-
-    .search__home {
-      margin-right: 7px;
-    }
-  }
-
-  .header__users {
-    display: flex;
-    align-items: center;
-    .users__join {
-      margin-right: 10px;
-    }
-    .users__avatar {
-      margin-right: 5px;
-      .avatar__img {
-        width: 25px;
-        height: 25px;
-      }
-    }
-  }
 }

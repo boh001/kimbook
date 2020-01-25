@@ -13,44 +13,66 @@ block content
                     span 게시물 만들기
                 form(action=routes.home, method="post",enctype="multipart/form-data")
                     .home__write
-                        img.write__avatar(src=`/${user.avatarUrl}`)
-                        input.write__text(type="text", name="text", placeholder="text")
+                        a.write__avatar(href=routes.profile(user.id))
+                            img.write__avatar(src=`/${user.avatarUrl}`)
+                        input.write__text(type="text", name="text", placeholder=`${user.nickname}님, 무슨 생각을 하고 계신가요?`)
                     .home__writeContent
                         input.writeContent__source(type="file", name="content")
-                        input.writeContent__submit(type="submit", value="submit")
+                        input.writeContent__submit(type="submit", name="submit")
             if contents
                 each content in contents
                     .home__content(id=content.id)
-                        h1=content.authorName
-                        h1=content.createdAt
+                        .content__info
+                            .info__author
+                                img.miniAvatar(src=`/${content.authorId.avatarUrl}`)
+                                h1.author__name=content.authorId.nickname
+                            h1=content.createdAt
+                        .content__text=content.text
                         if (content.contentType.split("/")[0] === "image")
-                            img(src=content.fileUrl, width="200px",height="200px")
+                            img.content__main(src=content.fileUrl)
                         else if (content.contentType.split("/")[0] === "video")
-                            video(src=content.fileUrl, width="200px",height="200px", type=content.contentType, controls=true)
-                        h2=content.text
+                            video.content__main(src=content.fileUrl, type=content.contentType, controls=true)
                         .content__react
-                            .react__like=content.like
-                            .react__reply 0
-                            if (content.contentType.split("/")[0] === "video")
-                                .react__view=content.view
+                            .react__like
+                                .like__icon 
+                                    i.far.fa-thumbs-up
+                                .like__count=content.like
+                            .react__info
+                                span.info__replyText 댓글
+                                span.info__reply=content.comments.length
+                                if (content.contentType.split("/")[0] === "video")
+                                    span.info__viewText 조회수
+                                    span.info__view=content.view
                         .content__action
-                            .action__like 
-                                button.jsActionLike like
+                            .action__like.jsContentLike 
+                                .like__icon 
+                                    i.far.fa-thumbs-up
+                                .like__button 좋아요
                             .action__reply 
-                                a(href=routes.reply) reply
+                                .reply__icon
+                                    i.far.fa-comment-dots
+                                .reply__button 댓글
                             .action__share
-                                .share share
+                                .share 공유하기
                         .content__comments
                                 img.comments__avatar(src=`/${user.avatarUrl}`, width="40px",height="40px")
                                 input.jsComment(type="text", name="comment", placeholder="please write comments")   
                                 ul.comments__lists
                                     each comment in content.comments
-                                        img(src=`/${comment.author.avatarUrl}`, width="40px",height="40px")
-                                        li=comment.description
-                                   
+                                        .div(id=comment._id)
+                                            img(src=`/${comment.author.avatarUrl}`, width="40px",height="40px")
+                                            li=comment.description
+                                            button.jsCommentLike like
+                                            .comment__like
+                                                .like__icon 
+                                                    i.far.fa-thumbs-up
+                                                .like__count=comment.like
+                                            .comment__reComment
+                                                img.reComments__avatar(src=`/${user.avatarUrl}`, width="40px",height="40px")
+                                                input.jsReComment(type="text", name="comment", placeholder="please write comments")
 
 
-
+                                        
     .main__user
         .user__lists
             each u in users
