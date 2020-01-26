@@ -101,8 +101,46 @@ export const apiComment = async (req, res) => {
     console.log(error);
   }
 };
-export const apiReComment = (req, res) => {
-  console.log("hi");
+export const apiReComment = async (req, res) => {
+  const {
+    body: { id, text }
+  } = req;
+  const {
+    user: { _id }
+  } = req;
+  const getFormatDate = date => {
+    var year = date.getFullYear();
+    var month = 1 + date.getMonth();
+    month = month >= 10 ? month : "0" + month;
+    var day = date.getDate();
+    day = day >= 10 ? day : "0" + day;
+    return year + "" + month + "" + day;
+  };
+  const createdAt = getFormatDate(new Date());
+  try {
+    const newReComment = await Comment.create({
+      author: _id,
+      description: text,
+      createdAt
+    });
+    await Comment.findOneAndUpdate(
+      { _id: id },
+      { $push: { comments: newReComment._id } }
+    );
+    const author = await User.findOne({ _id });
+    const comment = await Comment.findOne({ _id: id });
+    const reply = comment.comments.length;
+
+    res.status(200);
+    res.send({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: { avatar: author.avatarUrl, reply }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 export const apiCommentLike = async (req, res) => {
   const {

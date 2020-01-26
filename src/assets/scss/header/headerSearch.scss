@@ -2,8 +2,48 @@
   margin-right: 90px;
   display: flex;
   align-items: center;
-
   .search__home {
     margin-right: 7px;
+
+    .fab {
+      font-size: 30px;
+      color: white;
+    }
+  }
+  .bar__form {
+    width: 385px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    .bar__input {
+      width: 100%;
+      border: 1px solid white;
+      border-right: none;
+      padding: 2px;
+      height: 20px;
+      border-radius: 2px 0 0 2px;
+      outline: none;
+    }
+    .bar__submit {
+      width: 40px;
+      height: 26px;
+      background: $fb_bg;
+      border: solid 1px $fb_bg;
+      text-align: center;
+      color: black;
+      border-radius: 0 2px 2px 0;
+      cursor: pointer;
+      font-size: 15px;
+    }
+  }
+}
+.header__users {
+  font-size: 12px;
+  .users__avatar {
+    .avatar__img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
   }
 }

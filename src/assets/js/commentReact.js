@@ -1,5 +1,6 @@
 const actionLike = document.getElementsByClassName("jsCommentLike");
 const comment = document.getElementsByClassName("jsReComment");
+const commentShow = document.getElementsByClassName("comment__show");
 
 const upLike = (id, like) => {
   fetch(`/api/${id}/commentLike`, {
@@ -19,30 +20,18 @@ const upLike = (id, like) => {
       console.log(error);
     });
 };
-const upComment = (id, text, ul, reply) => {
-  fetch(`/api/${id}/comment`, {
+const upComment = id => {
+  fetch(`/api/${id}/reComment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ id, text })
+    body: JSON.stringify({ id })
   })
     .then(res => {
       return res.json();
     })
-    .then(myJson => {
-      const avatarUrl = myJson.body.avatar;
-      const replyCount = myJson.body.reply;
-      reply.innerText = replyCount;
-      const li = document.createElement("li");
-      const img = document.createElement("img");
-      li.innerHTML = text;
-      img.src = `/${avatarUrl}`;
-      img.style.width = "40px";
-      img.style.height = "40px";
-      ul.appendChild(img);
-      ul.appendChild(li);
-    })
+
     .catch(error => {
       console.log(error);
     });
@@ -57,19 +46,22 @@ const handleComment = event => {
   if (event.keyCode === 13) {
     event.preventDefault();
     console.log(event.path);
-    const ul = event.path[3];
-    const reactReply = event.path[5].children[4].children[1];
-    const text = event.path[0].value;
-    const homeContentId = event.path[5].id;
-    upComment(homeContentId, text, ul, reactReply);
+    const homeCommentId = event.path[3].id;
+    upComment(homeCommentId);
     event.path[0].value = "";
   }
+};
+const handleCommentShow = event => {
+  event.preventDefault();
+  event.path[2].lastChild.style.display = "flex";
 };
 const init = () => {
   const actionList = Array.from(actionLike);
   const commentList = Array.from(comment);
+  const commentShowList = Array.from(commentShow);
   actionList.map(a => a.addEventListener("click", handleReactLike));
-  commentList.map(r => r.addEventListener("keyup", handleComment));
+  commentList.map(c => c.addEventListener("keyup", handleComment));
+  commentShowList.map(r => r.addEventListener("click", handleCommentShow));
 };
 if (actionLike) {
   init();

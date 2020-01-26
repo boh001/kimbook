@@ -5,19 +5,20 @@ header.header
                 i.fab.fa-kickstarter
                 
         .search__bar
-            form(action=routes.search, method="get").bar__form
+            form.bar__form(action=routes.search, method="get")
                 input(type="text", name="search").bar__input
-                input(type="submit", value="click").bar__submit
+                button(type="submit", value="click").bar__submit
+                    i.fa.fa-search
     .header__users
         if !user
             .users__join 
-                a(href=routes.join) JOIN
+                a(href=routes.join) 회원가입
             .users__login
-                a(href=routes.login) LOGIN
+                a(href=routes.login) 로그인
         else
             .users__avatar
-                img.avatar__img(src=`/${user.avatarUrl}`)
+                img.miniAvatar3(src=`/${user.avatarUrl}`)
             .users__join 
                 a#jsUsersJoin(href=routes.profile(user.id))=user.nickname
             .users__login
-                a(href=routes.logout) LOGOUT
+                a(href=routes.logout) 로그아웃

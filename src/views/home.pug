@@ -3,9 +3,25 @@ block content
     if user
         .main__sub
             .sub__options
-                img.options__avatar(src=`/${user.avatarUrl}`)
-                .options__user=user.nickname
+                .options__theme
+                    i.fas.fa-star 
+                    span 즐겨찾기
+                ul.options__lists
+                    li.list__option
+                        i.fab.fa-youtube
+                        span.option__name Youtube
+                    li.list__option
+                        i.fab.fa-twitch
+                        span.option__name Twitch
+                    li.list__option 
+                        i.fab.fa-instagram
+                        span.option__name Instagram
+                    li.list__option 
+                        i.fab.fa-github
+                        span.option__name Github
+                
 
+                
     .main__home 
         if user
             .home
@@ -72,11 +88,25 @@ block content
                                                 span.infoLike__count=comment.like
                                                 span.infoLike__sub 개
                                             .comment__show 답글보기
-                                        .comment__reComment
-                                            img.reComments__avatar(src=`/${user.avatarUrl}`, width="40px",height="40px")
-                                            input.jsReComment(type="text", name="comment", placeholder="please write comments")
-
-
+                                        .comment__reComments
+                                            .reComments__user
+                                                img.miniAvatar3(src=`/${user.avatarUrl}`, width="40px",height="40px")
+                                                input.user__text.jsReComment(type="text", name="comment", placeholder="please write comments")
+                                            .reComments__lists
+                                                each reComment in comment.comments
+                                                    .comment__list(id=comment._id)
+                                                        .list__list
+                                                            img.miniAvatar3(src=`/${comment.author.avatarUrl}`, width="40px",height="40px")
+                                                            .list__description
+                                                                span.description__name #{comment.author.nickname}
+                                                                span.description__text=comment.description
+                                                        .list__react
+                                                            .comment__like.jsCommentLike 좋아요
+                                                            .comment__infoLike
+                                                                span.infoLike__count=comment.like
+                                                                span.infoLike__sub 개
+                                                            .comment__show 답글보기
+                                                    
                                         
     .main__user
         .user__lists

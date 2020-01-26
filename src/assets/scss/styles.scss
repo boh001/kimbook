@@ -11,10 +11,6 @@ body {
   background-color: $fb_bg;
   a {
     text-decoration: none;
-    .fa-kickstarter {
-      color: white;
-      font-size: 27px;
-    }
   }
 }
 input:focus {
@@ -33,6 +29,12 @@ input:focus {
   margin-right: 7px;
   border: 1px solid $fb_bg;
 }
+.miniAvatar3 {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
 .main {
   display: flex;
   justify-content: center;
@@ -46,4 +48,7 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  a:visited {
+    color: $fb_white;
+  }
 }

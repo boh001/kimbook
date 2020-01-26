@@ -5,14 +5,20 @@
   display: flex;
   align-items: flex-end;
   flex-direction: column;
-  width: 1021px;
+  width: 1025px;
   height: 1250px;
   .user__lists {
     display: flex;
     flex-direction: column;
     height: 100%;
-    align-items: flex-end;
-    width: 100px;
-    border-left: solid 1px black;
+    align-items: flex-start;
+    padding: 10px;
+    width: 180px;
+    border-left: 1px solid #cec8c8;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
   }
 }

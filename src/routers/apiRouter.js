@@ -13,6 +13,6 @@ const apiRouter = express.Router();
 apiRouter.post(routes.like, apiLike);
 apiRouter.post(routes.view, apiView);
 apiRouter.post(routes.comment, apiComment);
-apiRouter.post(routes.recomment, apiReComment);
+apiRouter.post(routes.reComment, apiReComment);
 apiRouter.post(routes.commentLike, apiCommentLike);
 export default apiRouter;
