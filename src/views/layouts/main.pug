@@ -7,6 +7,10 @@ html
     body
         include ../partials/header
         main.main
+            include ../partials/chatRoom
             block content
-        include ../partials/footer
+            include ../partials/chat
+        script.
+                window.events = !{events}
+        script(src="/socket.io/socket.io.js")
         script(src="/static/main.js")

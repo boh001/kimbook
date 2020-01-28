@@ -100,7 +100,7 @@ const handleComment = event => {
     event.path[0].value = "";
   }
 };
-const handelRelpy = event => {
+const handleRelpy = event => {
   event.preventDefault();
   const contentComments = event.path[2].nextElementSibling;
   contentComments.style.display = "flex";
@@ -113,7 +113,7 @@ const init = () => {
   actionList.map(a => a.addEventListener("click", handleReactLike));
   videoList.map(v => v.addEventListener("play", handleView));
   commentList.map(c => c.addEventListener("keyup", handleComment));
-  replyList.map(r => r.addEventListener("click", handelRelpy));
+  replyList.map(r => r.addEventListener("click", handleRelpy));
 };
 if (actionLike) {
   init();

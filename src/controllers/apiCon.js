@@ -117,6 +117,8 @@ export const apiReComment = async (req, res) => {
     return year + "" + month + "" + day;
   };
   const createdAt = getFormatDate(new Date());
+  console.log(text);
+
   try {
     const newReComment = await Comment.create({
       author: _id,
@@ -177,6 +179,26 @@ export const apiCommentLike = async (req, res) => {
         body: 1
       });
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const apiPlusFriend = async (req, res) => {
+  const {
+    body: { id }
+  } = req;
+  const {
+    user: { _id }
+  } = req;
+
+  try {
+    const user = await User.findOne({ _id });
+    if (!user.friends.includes(id)) {
+      await user.updateOne({ $push: { friends: id } });
+      await User.findOneAndUpdate({ _id: id }, { $push: { friends: _id } });
+    }
+    res.status(200);
+    res.send("ok");
   } catch (error) {
     console.log(error);
   }

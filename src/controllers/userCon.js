@@ -3,6 +3,7 @@ import User from "../models/User";
 import passport from "passport";
 import crypto from "crypto";
 import { transporter, mailOptions } from "../nodemailer";
+import qs from "querystring";
 
 export const getJoin = (req, res) => res.render("join");
 export const postJoin = async (req, res, next) => {
@@ -21,7 +22,7 @@ export const postJoin = async (req, res, next) => {
     .randomBytes(256)
     .toString("base64")
     .substr(50, 5);
-  const verifyKey = `${keyOne + keyTwo}`;
+  const verifyKey = qs.escape(`${keyOne + keyTwo}`);
   req.body.verifyKey = verifyKey;
   if (password !== password2) {
     res.staus(404);
@@ -65,8 +66,9 @@ export const getAuth = async (req, res) => {
   const {
     query: { key }
   } = req;
+  console.log(qs.unescape(key));
 
-  const user = await User.find({ verifyKey: key });
+  const user = await User.find({ verifyKey: qs.unescape(key) });
   console.log(user);
 
   if (user.length !== 0) {
@@ -87,7 +89,6 @@ export const checkAuth = async (req, res, next) => {
     body: { nickname }
   } = req;
   const user = await User.find({ nickname, emailVerified: true });
-  console.log(user);
   if (user.length === 1) {
     next();
   } else {

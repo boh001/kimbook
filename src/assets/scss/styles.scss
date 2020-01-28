@@ -2,10 +2,12 @@
 @import "variable";
 @import "./main/mainSub";
 @import "./main/mainHome";
-@import "./main/mainUser.scss";
+@import "./chat/chatUser";
+@import "./chatRoom";
 @import "./header/headerSearch";
 @import "./header/headerUsers";
-
+@import "./search/searchFilter";
+@import "./search/searchResult";
 body {
   height: 8000px;
   background-color: $fb_bg;
@@ -34,6 +36,11 @@ input:focus {
   height: 25px;
   border-radius: 50%;
   margin-right: 5px;
+}
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
 }
 .main {
   display: flex;

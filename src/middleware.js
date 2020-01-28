@@ -2,10 +2,24 @@ import routes from "./routes";
 import multer from "multer";
 import fs from "fs";
 import path from "path";
-
-export const globalVariable = (req, res, next) => {
+import User from "./models/User";
+import events from "./socketEvent";
+export const globalVariable = async (req, res, next) => {
   res.locals.routes = routes;
+  res.locals.events = JSON.stringify(events);
   res.locals.user = req.user || false;
+  if (req.user) {
+    const {
+      user: { id }
+    } = req;
+    const users = await User.findOne({ _id: id }).populate([
+      {
+        path: "friends",
+        model: "User"
+      }
+    ]);
+    res.locals.users = users;
+  }
   next();
 };
 const storage = multer.diskStorage({

@@ -1,0 +1,7 @@
+if user                                    
+    .chat__users
+        .users__friends(id=user.id)
+            if users.friends
+                each friend in users.friends
+                    .friends__list.jsJoinBtn(id=friend.id)
+                        span=friend.nickname

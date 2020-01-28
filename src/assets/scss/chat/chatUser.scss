@@ -1,4 +1,4 @@
-.main__user {
+.chat__users {
   position: sticky;
   top: 40px;
   bottom: 0px;
@@ -7,7 +7,7 @@
   flex-direction: column;
   width: 1025px;
   height: 1250px;
-  .user__lists {
+  .users__friends {
     display: flex;
     flex-direction: column;
     height: 100%;

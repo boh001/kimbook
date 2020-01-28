@@ -10,6 +10,7 @@ const SEARCH = "/search";
 const API = "/api";
 const LIKE = "/:id/like";
 const VIEW = "/:id/view";
+const PLUSFRIEND = "/:id/plusFriend";
 const COMMENT = "/:id/comment";
 const RECOMMENT = "/:id/reComment";
 const COMMENTLIKE = "/:id/commentLike";
@@ -29,6 +30,7 @@ const routes = {
   api: API,
   like: LIKE,
   view: VIEW,
+  plusFriend: PLUSFRIEND,
   comment: COMMENT,
   reComment: RECOMMENT,
   commentLike: COMMENTLIKE,

@@ -11,7 +11,13 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  verifyKey: String
+  verifyKey: String,
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }
+  ]
 });
 UserSchema.plugin(passportLocalMongoose, { usernameField: "nickname" });
 const model = mongoose.model("User", UserSchema);

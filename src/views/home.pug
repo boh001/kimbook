@@ -87,35 +87,23 @@ block content
                                             .comment__infoLike
                                                 span.infoLike__count=comment.like
                                                 span.infoLike__sub 개
-                                            .comment__show 답글보기
+                                            .comment__show.jsCommentShow 댓글보기
                                         .comment__reComments
                                             .reComments__user
                                                 img.miniAvatar3(src=`/${user.avatarUrl}`, width="40px",height="40px")
                                                 input.user__text.jsReComment(type="text", name="comment", placeholder="please write comments")
                                             .reComments__lists
                                                 each reComment in comment.comments
-                                                    .comment__list(id=comment._id)
+                                                    .comment__list(id=reComment._id)
                                                         .list__list
-                                                            img.miniAvatar3(src=`/${comment.author.avatarUrl}`, width="40px",height="40px")
+                                                            img.miniAvatar3(src=`/${reComment.author.avatarUrl}`, width="40px",height="40px")
                                                             .list__description
                                                                 span.description__name #{comment.author.nickname}
-                                                                span.description__text=comment.description
+                                                                span.description__text=reComment.description
                                                         .list__react
                                                             .comment__like.jsCommentLike 좋아요
                                                             .comment__infoLike
-                                                                span.infoLike__count=comment.like
+                                                                span.infoLike__count=reComment.like
                                                                 span.infoLike__sub 개
-                                                            .comment__show 답글보기
+                                                            .comment__show.jsReCommentShow 댓글보기
                                                     
-                                        
-    .main__user
-        .user__lists
-            each u in users
-                if (user.nickname === u.nickname)
-                    .user
-                        span login
-                        h1=u.nickname
-                else
-                    .user
-                        span logout
-                        h1=u.nickname
