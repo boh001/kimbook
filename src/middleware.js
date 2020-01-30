@@ -3,6 +3,7 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 import User from "./models/User";
+import ChatRoom from "./models/ChatRoom";
 import events from "./socketEvent";
 export const globalVariable = async (req, res, next) => {
   res.locals.routes = routes;
@@ -19,6 +20,23 @@ export const globalVariable = async (req, res, next) => {
       }
     ]);
     res.locals.users = users;
+    const chats = await ChatRoom.find({ members: { $in: [id] } }).populate([
+      {
+        path: "members",
+        model: "User"
+      },
+      {
+        path: "messages",
+        model: "Message",
+        populate: [
+          {
+            path: "author",
+            model: "User"
+          }
+        ]
+      }
+    ]);
+    res.locals.chats = chats;
   }
   next();
 };

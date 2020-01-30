@@ -1,2 +1,26 @@
-.chatRoom
- 
+.chatRooms
+    if user
+        .rooms__lists(id=user.id)
+            each chat in chats
+                .lists__room(id=chat.id)
+                    .room__members
+                        each m in chat.members
+                            .members__info
+                                img.miniAvatar2(src=`/${m.avatarUrl}`)
+                                h1=m.nickname
+                        .members__close
+                            button.jsClose x
+                    .room__messages.jsRoomMsg
+                        each msg in chat.messages
+                            if user.id === msg.author.id
+                                .msg__me
+                                    .user__text=msg.description
+                            else
+                                .msg__user
+                                    img.miniAvatar3(src=`/${msg.author.avatarUrl}`)
+                                    .user__text=msg.description
+                    .room__input
+                        input.input__text.jsSendMsg(type="text",placeholder="메시지를 입력하세요")
+                        .input__content
+                            input.content__file(type="file")
+                            input.content__submit(type="submit")

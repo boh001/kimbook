@@ -3553,17 +3553,6 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 
 /***/ }),
 
-/***/ "./assets/js/chat.js":
-/*!***************************!*\
-  !*** ./assets/js/chat.js ***!
-  \***************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("\n\n//# sourceURL=webpack:///./assets/js/chat.js?");
-
-/***/ }),
-
 /***/ "./assets/js/commentReact.js":
 /*!***********************************!*\
   !*** ./assets/js/commentReact.js ***!
@@ -3594,7 +3583,7 @@ eval("var actionLike = document.getElementsByClassName(\"jsContentLike\");\nvar 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"handleJoinRoom\", function() { return handleJoinRoom; });\n/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./socket */ \"./assets/js/socket.js\");\n\nvar JoinBtn = document.getElementsByClassName(\"jsJoinBtn\");\n\nvar handleJoinBtn = function handleJoinBtn(event) {\n  event.preventDefault();\n  console.log(event.path);\n  var idList = [event.path[1].id, event.path[2].id].sort();\n  var roomId = \"\".concat(idList[0], \"/\").concat(idList[1]);\n  var socket = io(\"/\");\n  Object(_socket__WEBPACK_IMPORTED_MODULE_0__[\"initSocket\"])(socket);\n  Object(_socket__WEBPACK_IMPORTED_MODULE_0__[\"getSocket\"])().emit(window.events.JoinRoom, {\n    roomId: roomId,\n    idList: idList\n  });\n};\n\nvar handleJoinRoom = function handleJoinRoom(_ref) {\n  var roomId = _ref.roomId;\n  console.log(roomId);\n};\n\nvar init = function init() {\n  var JoinBtnList = Array.from(JoinBtn);\n  JoinBtnList.map(function (j) {\n    return j.addEventListener(\"click\", handleJoinBtn);\n  });\n};\n\nif (JoinBtn) {\n  init();\n}\n\n//# sourceURL=webpack:///./assets/js/joinRoom.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"handleJoinRoom\", function() { return handleJoinRoom; });\n/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./socket */ \"./assets/js/socket.js\");\n\nvar JoinBtn = document.getElementsByClassName(\"jsJoinBtn\");\n\nvar handleJoinBtn = function handleJoinBtn(event) {\n  event.preventDefault();\n  var path = event.path;\n  var idList = [path[1].id, path[2].id].sort();\n  var me = path[1].id;\n  var roomId = \"\".concat(idList[0], \"/\").concat(idList[1]);\n  var openRoom = document.getElementById(roomId);\n  openRoom.style.display = \"block\";\n  var socket = io(\"/\");\n  Object(_socket__WEBPACK_IMPORTED_MODULE_0__[\"initSocket\"])(socket);\n  Object(_socket__WEBPACK_IMPORTED_MODULE_0__[\"getSocket\"])().emit(window.events.JoinRoom, {\n    roomId: roomId,\n    idList: idList,\n    me: me\n  });\n};\n\nvar handleJoinRoom = function handleJoinRoom(_ref) {\n  var roomId = _ref.roomId;\n  console.log(roomId);\n};\n\nvar init = function init() {\n  var JoinBtnList = Array.from(JoinBtn);\n  JoinBtnList.map(function (j) {\n    return j.addEventListener(\"click\", handleJoinBtn);\n  });\n};\n\nif (JoinBtn) {\n  init();\n}\n\n//# sourceURL=webpack:///./assets/js/joinRoom.js?");
 
 /***/ }),
 
@@ -3606,7 +3595,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _contentReact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contentReact */ \"./assets/js/contentReact.js\");\n/* harmony import */ var _contentReact__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_contentReact__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _commentReact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./commentReact */ \"./assets/js/commentReact.js\");\n/* harmony import */ var _commentReact__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_commentReact__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _chat__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chat */ \"./assets/js/chat.js\");\n/* harmony import */ var _chat__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chat__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _plusFriend__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./plusFriend */ \"./assets/js/plusFriend.js\");\n/* harmony import */ var _plusFriend__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_plusFriend__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./socket */ \"./assets/js/socket.js\");\n/* harmony import */ var _joinRoom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./joinRoom */ \"./assets/js/joinRoom.js\");\n\n\n\n\n\n\n\n\n//# sourceURL=webpack:///./assets/js/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./assets/scss/styles.scss\");\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _contentReact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./contentReact */ \"./assets/js/contentReact.js\");\n/* harmony import */ var _contentReact__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_contentReact__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _commentReact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./commentReact */ \"./assets/js/commentReact.js\");\n/* harmony import */ var _commentReact__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_commentReact__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _sendMsg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sendMsg */ \"./assets/js/sendMsg.js\");\n/* harmony import */ var _plusFriend__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./plusFriend */ \"./assets/js/plusFriend.js\");\n/* harmony import */ var _plusFriend__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_plusFriend__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./socket */ \"./assets/js/socket.js\");\n/* harmony import */ var _joinRoom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./joinRoom */ \"./assets/js/joinRoom.js\");\n\n\n\n\n\n\n\n\n//# sourceURL=webpack:///./assets/js/main.js?");
 
 /***/ }),
 
@@ -3621,6 +3610,18 @@ eval("var plusFriend = document.getElementsByClassName(\"jsPlusFriend\");\n\nvar
 
 /***/ }),
 
+/***/ "./assets/js/sendMsg.js":
+/*!******************************!*\
+  !*** ./assets/js/sendMsg.js ***!
+  \******************************/
+/*! exports provided: handleSendMsg */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"handleSendMsg\", function() { return handleSendMsg; });\n/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./socket */ \"./assets/js/socket.js\");\n\nvar sendMsg = document.getElementsByClassName(\"jsSendMsg\");\nvar closeBtn = document.getElementsByClassName(\"jsClose\");\n\nvar appendMsg = function appendMsg(text, nickname) {\n  var div = document.createElement(\"div\"); //   sendMsg.div.innerHTML = `\n  //         <div>${nickname ? \"out\" : \"me\"} : ${text}</div>\n  //     `;\n\n  roomMsg.appendChild(div);\n};\n\nvar handleSendBtn = function handleSendBtn(event) {\n  if (event.keyCode === 13) {\n    event.preventDefault();\n    var path = event.path;\n    var id = path[3].id;\n    var text = path[0].value;\n    Object(_socket__WEBPACK_IMPORTED_MODULE_0__[\"getSocket\"])().emit(window.events.SendMessage, {\n      text: text,\n      id: id\n    });\n    appendMsg(text);\n    text = \"\";\n  }\n};\n\nvar handleCloseBtn = function handleCloseBtn(event) {\n  event.preventDefault();\n  event.path[3].style.display = \"none\";\n};\n\nvar handleSendMsg = function handleSendMsg(_ref) {\n  var nickname = _ref.nickname,\n      text = _ref.text;\n  appendMsg(text, nickname);\n};\n\nvar init = function init() {\n  var sendMsgList = Array.from(sendMsg);\n  var closeBtnList = Array.from(closeBtn);\n  sendMsgList.map(function (s) {\n    return s.addEventListener(\"keyup\", handleSendBtn);\n  });\n  closeBtnList.map(function (s) {\n    return s.addEventListener(\"click\", handleCloseBtn);\n  });\n};\n\nif (sendMsg) {\n  init();\n}\n\n//# sourceURL=webpack:///./assets/js/sendMsg.js?");
+
+/***/ }),
+
 /***/ "./assets/js/socket.js":
 /*!*****************************!*\
   !*** ./assets/js/socket.js ***!
@@ -3629,7 +3630,7 @@ eval("var plusFriend = document.getElementsByClassName(\"jsPlusFriend\");\n\nvar
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getSocket\", function() { return getSocket; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initSocket\", function() { return initSocket; });\n/* harmony import */ var _joinRoom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./joinRoom */ \"./assets/js/joinRoom.js\");\n\nvar socket = null;\nvar getSocket = function getSocket() {\n  return socket;\n};\nvar initSocket = function initSocket(aSocket) {\n  var _window = window,\n      events = _window.events;\n  socket = aSocket;\n  socket.on(events.JoinRoom, _joinRoom__WEBPACK_IMPORTED_MODULE_0__[\"handleJoinRoom\"]);\n};\n\n//# sourceURL=webpack:///./assets/js/socket.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getSocket\", function() { return getSocket; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initSocket\", function() { return initSocket; });\n/* harmony import */ var _joinRoom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./joinRoom */ \"./assets/js/joinRoom.js\");\n/* harmony import */ var _sendMsg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sendMsg */ \"./assets/js/sendMsg.js\");\n\n\nvar socket = null;\nvar getSocket = function getSocket() {\n  return socket;\n};\nvar initSocket = function initSocket(aSocket) {\n  var _window = window,\n      events = _window.events;\n  socket = aSocket;\n  socket.on(events.JoinRoom, _joinRoom__WEBPACK_IMPORTED_MODULE_0__[\"handleJoinRoom\"]);\n  socket.on(events.SendMessage, _sendMsg__WEBPACK_IMPORTED_MODULE_1__[\"handleSendMsg\"]);\n};\n\n//# sourceURL=webpack:///./assets/js/socket.js?");
 
 /***/ }),
 

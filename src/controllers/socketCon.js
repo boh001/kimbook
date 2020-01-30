@@ -1,8 +1,11 @@
 import events from "../socketEvent";
-import { JoinRoom } from "./eventCon";
+import { JoinRoom, SendMessage } from "./eventCon";
 const SocketController = (socket, io) => {
   socket.on(events.JoinRoom, data => {
     JoinRoom(socket, io, data);
+  });
+  socket.on(events.SendMessage, data => {
+    SendMessage(socket, data);
   });
 };
 

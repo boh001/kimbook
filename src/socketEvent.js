@@ -1,5 +1,6 @@
 const events = {
-  JoinRoom: "JoinRoom"
+  JoinRoom: "JoinRoom",
+  SendMessage: "SendMessage"
 };
 
 export default events;
