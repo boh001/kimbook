@@ -3,30 +3,39 @@ import { getSocket } from "./socket";
 const sendMsg = document.getElementsByClassName("jsSendMsg");
 const closeBtn = document.getElementsByClassName("jsClose");
 
-const appendMsg = (text, nickname) => {
+const appendMsg = (roomId, text, nickname, avatarUrl) => {
   const div = document.createElement("div");
-  //   sendMsg.div.innerHTML = `
-  //         <div>${nickname ? "out" : "me"} : ${text}</div>
-  //     `;
-  roomMsg.appendChild(div);
+  const room = document.getElementById(roomId);
+  div.innerHTML = `
+          <div class=${nickname ? "msg__user" : "msg__me"}>${
+    nickname ? `<img src=${avatarUrl} class =miniAvatar3>` : ""
+  }<div class=user__text>${text}</div>
+      `;
+  room.children[1].appendChild(div);
 };
 const handleSendBtn = event => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    const path = event.path;
-    const id = path[3].id;
-    let text = path[0].value;
-    getSocket().emit(window.events.SendMessage, { text, id });
-    appendMsg(text);
-    text = "";
+    const target = event.currentTarget;
+    const id = target.parentNode.parentNode.parentNode.id;
+    const roomId = target.parentNode.parentNode.id;
+    let text = target.value;
+    getSocket().emit(window.events.SendMessage, {
+      text,
+      id,
+      roomId
+    });
+    appendMsg(roomId, text);
+    target.value = "";
   }
 };
 const handleCloseBtn = event => {
   event.preventDefault();
-  event.path[3].style.display = "none";
+  const target = event.currentTarget;
+  target.parentNode.parentNode.parentNode.style.display = "none";
 };
-export const handleSendMsg = ({ nickname, text }) => {
-  appendMsg(text, nickname);
+export const handleNewMsg = ({ nickname, text, roomId, avatarUrl }) => {
+  appendMsg(roomId, text, nickname, avatarUrl);
 };
 const init = () => {
   const sendMsgList = Array.from(sendMsg);

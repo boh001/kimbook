@@ -17,6 +17,7 @@ const upFriend = id => {
 };
 const handlePlus = event => {
   event.preventDefault();
+  event.stopPropagation();
   const friend = event.path[4].id;
   upFriend(friend);
 };

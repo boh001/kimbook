@@ -67,7 +67,11 @@ const upComment = (id, text, ul, reply) => {
     });
 };
 const handleReactLike = event => {
+  console.log(event.target);
+  console.log(event.currentTarget.children);
+
   event.preventDefault();
+  event.stopPropagation();
   const element = event.path;
   const contentLike = element[2].previousSibling;
   const homeReactLike = contentLike.firstChild.children[1];
@@ -76,6 +80,7 @@ const handleReactLike = event => {
 };
 const handleView = event => {
   event.preventDefault();
+  event.stopPropagation();
   const element = event.path;
   const homeContentId = element[1].id;
   const contentReact = element[1].children[3];
@@ -92,6 +97,7 @@ const handleView = event => {
 const handleComment = event => {
   if (event.keyCode === 13) {
     event.preventDefault();
+    event.stopPropagation();
     const text = event.path[0].value;
     const ul = event.path[1].lastElementChild;
     const reactReply = event.path[3].children[3].lastChild.children[1];
@@ -102,6 +108,7 @@ const handleComment = event => {
 };
 const handleRelpy = event => {
   event.preventDefault();
+  event.stopPropagation();
   const contentComments = event.path[2].nextElementSibling;
   contentComments.style.display = "flex";
 };

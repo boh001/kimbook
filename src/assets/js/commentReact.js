@@ -39,6 +39,7 @@ const upComment = (id, text) => {
 };
 const handleReactLike = event => {
   event.preventDefault();
+  event.stopPropagation();
   const like = event.path[0].nextSibling.firstChild;
   const commentId = event.path[2].id;
   upLike(commentId, like);
@@ -46,6 +47,7 @@ const handleReactLike = event => {
 const handleComment = event => {
   if (event.keyCode === 13) {
     event.preventDefault();
+    event.stopPropagation();
     const text = event.path[0].value;
     const homeCommentId = event.path[3].id;
     console.log(event.path);
@@ -56,10 +58,12 @@ const handleComment = event => {
 };
 const handleCommentShow = event => {
   event.preventDefault();
+  event.stopPropagation();
   event.path[2].lastChild.style.display = "flex";
 };
 const handleReCommentShow = event => {
   event.preventDefault();
+  event.stopPropagation();
   const nickname =
     event.path[4].lastChild.lastChild.firstChild.lastChild.firstChild;
   const input = event.path[4].firstChild.lastChild;

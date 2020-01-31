@@ -3,12 +3,10 @@ import ChatRoom from "../models/ChatRoom";
 import Message from "../models/Message";
 import User from "../models/User";
 
-export const JoinRoom = async (socket, io, { roomId, idList, me }) => {
+export const JoinRoom = async (socket, { roomId, idList, me }) => {
   const user = await User.findOne({ _id: me });
   socket.nickname = user.nickname;
   socket.room = roomId;
-  console.log(socket.nickname);
-
   const room = await ChatRoom.findOne({ _id: roomId });
   if (!room) {
     try {
@@ -16,15 +14,13 @@ export const JoinRoom = async (socket, io, { roomId, idList, me }) => {
         _id: roomId,
         members: idList
       });
-      socket.join(roomId, () => {
-        io.to(roomId).emit(events.JoinRoom, { roomId });
-      });
+      socket.join(roomId);
     } catch (error) {
       console.log(error);
     }
   }
 };
-export const SendMessage = async (socket, { text, id }) => {
+export const SendMessage = async (socket, { text, id, roomId }) => {
   const msg = await Message.create({
     author: id,
     description: text
@@ -33,5 +29,12 @@ export const SendMessage = async (socket, { text, id }) => {
     { _id: socket.room },
     { $push: { messages: msg.id } }
   );
-  socket.emit(events.SendMessage, { nickname: socket.nickname, text });
+
+  const user = await User.findOne({ _id: id });
+  socket.broadcast.emit(events.NewMessage, {
+    avatarUrl: user.avatarUrl,
+    nickname: socket.nickname,
+    text,
+    roomId
+  });
 };
