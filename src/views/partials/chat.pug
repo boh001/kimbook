@@ -4,4 +4,6 @@ if user
             if users.friends
                 each friend in users.friends
                     .friends__list.jsJoinBtn(id=friend.id)
-                        span=friend.nickname
+                        .list__info
+                            img.miniAvatar2(src=`/${friend.avatarUrl}`)
+                            .info__nickname=friend.nickname

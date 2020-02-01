@@ -67,20 +67,10 @@ export const apiComment = async (req, res) => {
   const {
     user: { _id }
   } = req;
-  const getFormatDate = date => {
-    var year = date.getFullYear();
-    var month = 1 + date.getMonth();
-    month = month >= 10 ? month : "0" + month;
-    var day = date.getDate();
-    day = day >= 10 ? day : "0" + day;
-    return year + "" + month + "" + day;
-  };
-  const createdAt = getFormatDate(new Date());
   try {
     const newComment = await Comment.create({
       author: _id,
-      description: text,
-      createdAt
+      description: text
     });
     await Content.findOneAndUpdate(
       { _id: id },
@@ -95,7 +85,7 @@ export const apiComment = async (req, res) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: { avatar: author.avatarUrl, reply }
+      body: { author, reply, id: newComment.id }
     });
   } catch (error) {
     console.log(error);
@@ -108,22 +98,10 @@ export const apiReComment = async (req, res) => {
   const {
     user: { _id }
   } = req;
-  const getFormatDate = date => {
-    var year = date.getFullYear();
-    var month = 1 + date.getMonth();
-    month = month >= 10 ? month : "0" + month;
-    var day = date.getDate();
-    day = day >= 10 ? day : "0" + day;
-    return year + "" + month + "" + day;
-  };
-  const createdAt = getFormatDate(new Date());
-  console.log(text);
-
   try {
     const newReComment = await Comment.create({
       author: _id,
-      description: text,
-      createdAt
+      description: text
     });
     await Comment.findOneAndUpdate(
       { _id: id },

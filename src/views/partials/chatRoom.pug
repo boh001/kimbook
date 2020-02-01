@@ -3,13 +3,16 @@
         .rooms__lists(id=user.id)
             each chat in chats
                 .lists__room(id=chat.id)
-                    .room__members
-                        each m in chat.members
-                            .members__info
-                                img.miniAvatar2(src=`/${m.avatarUrl}`)
-                                h1=m.nickname
-                        .members__close
-                            button.jsClose x
+                    .room__members.jsMini
+                        .members__members
+                            each m in chat.members
+                                .members__info
+                                    img.miniAvatar2(src=`/${m.avatarUrl}`)
+                                    h1=m.nickname
+                        .members__btn
+                            .btn__close
+                                .jsClose 
+                                    i.fas.fa-times
                     .room__messages.jsRoomMsg
                         each msg in chat.messages
                             if user.id === msg.author.id

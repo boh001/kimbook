@@ -23,7 +23,7 @@ const handlePlus = event => {
 };
 const init = () => {
   const plusList = Array.from(plusFriend);
-  plusList.map(p => p.addEventListener("click", handlePlus));
+  plusList.forEach(p => p.addEventListener("click", handlePlus));
 };
 if (plusFriend) {
   init();

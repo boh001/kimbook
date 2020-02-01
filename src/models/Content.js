@@ -8,7 +8,10 @@ const ContentSchema = new mongoose.Schema({
   contentType: String,
   text: String,
   fileUrl: String,
-  createdAt: String,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

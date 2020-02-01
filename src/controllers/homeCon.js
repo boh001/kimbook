@@ -27,7 +27,6 @@ export const getHome = async (req, res) => {
       model: "User"
     }
   ]);
-
   res.render("home", { contents });
 };
 export const postHome = async (req, res) => {
@@ -38,16 +37,6 @@ export const postHome = async (req, res) => {
   const {
     file: { path, mimetype }
   } = req;
-  const getFormatDate = date => {
-    var year = date.getFullYear();
-    var month = 1 + date.getMonth();
-    month = month >= 10 ? month : "0" + month;
-    var day = date.getDate();
-    day = day >= 10 ? day : "0" + day;
-    return year + "-" + month + "-" + day;
-  };
-  const createdAt = getFormatDate(new Date());
-  console.log(createdAt);
 
   const {
     user: { id }
@@ -57,8 +46,7 @@ export const postHome = async (req, res) => {
       authorId: id,
       fileUrl: path,
       contentType: mimetype,
-      text,
-      createdAt
+      text
     });
     res.redirect(routes.home);
   } catch (error) {
@@ -69,6 +57,6 @@ export const getSearch = async (req, res) => {
   const {
     query: { search }
   } = req;
-  const users = await User.find({ nickname: search });
-  res.render("search", { users });
+  const people = await User.find({ nickname: search });
+  res.render("search", { people });
 };

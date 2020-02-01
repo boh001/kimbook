@@ -11,6 +11,9 @@ const handleJoinBtn = event => {
   const roomId = `${idList[0]}/${idList[1]}`;
   const openRoom = document.getElementById(roomId);
   openRoom.style.display = "block";
+  openRoom.style.height = "45px";
+  openRoom.children[1].style.display = "none";
+  openRoom.children[2].style.display = "none";
   const socket = io("/");
   initSocket(socket);
   getSocket().emit(window.events.JoinRoom, { roomId, idList, me });
@@ -18,7 +21,7 @@ const handleJoinBtn = event => {
 
 const init = () => {
   const JoinBtnList = Array.from(JoinBtn);
-  JoinBtnList.map(j => j.addEventListener("click", handleJoinBtn));
+  JoinBtnList.forEach(j => j.addEventListener("click", handleJoinBtn));
 };
 if (JoinBtn) {
   init();

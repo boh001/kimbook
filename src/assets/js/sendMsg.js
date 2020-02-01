@@ -2,6 +2,7 @@ import { getSocket } from "./socket";
 
 const sendMsg = document.getElementsByClassName("jsSendMsg");
 const closeBtn = document.getElementsByClassName("jsClose");
+const miniBtn = document.getElementsByClassName("jsMini");
 
 const appendMsg = (roomId, text, nickname, avatarUrl) => {
   const div = document.createElement("div");
@@ -30,9 +31,24 @@ const handleSendBtn = event => {
   }
 };
 const handleCloseBtn = event => {
+  console.log(event);
+  const target = event.currentTarget;
+  target.parentNode.parentNode.parentNode.parentNode.style.display = "none";
+};
+const handleMiniBtn = event => {
   event.preventDefault();
   const target = event.currentTarget;
-  target.parentNode.parentNode.parentNode.style.display = "none";
+  const s1 = target.nextSibling;
+  const s2 = s1.nextSibling;
+  if (s1.style.display === "none") {
+    target.parentNode.style.height = "500px";
+    s1.style.display = "flex";
+    s2.style.display = "block";
+  } else {
+    s1.style.display = "none";
+    s2.style.display = "none";
+    target.parentNode.style.height = "45px";
+  }
 };
 export const handleNewMsg = ({ nickname, text, roomId, avatarUrl }) => {
   appendMsg(roomId, text, nickname, avatarUrl);
@@ -40,8 +56,10 @@ export const handleNewMsg = ({ nickname, text, roomId, avatarUrl }) => {
 const init = () => {
   const sendMsgList = Array.from(sendMsg);
   const closeBtnList = Array.from(closeBtn);
-  sendMsgList.map(s => s.addEventListener("keyup", handleSendBtn));
-  closeBtnList.map(s => s.addEventListener("click", handleCloseBtn));
+  const miniBtnList = Array.from(miniBtn);
+  sendMsgList.forEach(s => s.addEventListener("keyup", handleSendBtn));
+  closeBtnList.forEach(s => s.addEventListener("click", handleCloseBtn));
+  miniBtnList.forEach(m => m.addEventListener("click", handleMiniBtn));
 };
 if (sendMsg) {
   init();

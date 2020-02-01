@@ -39,34 +39,36 @@ const upComment = (id, text) => {
 };
 const handleReactLike = event => {
   event.preventDefault();
-  event.stopPropagation();
-  const like = event.path[0].nextSibling.firstChild;
-  const commentId = event.path[2].id;
+  const target = event.currentTarget;
+  const like = target.nextSibling.firstChild;
+  const commentId = target.parentNode.parentNode.id;
   upLike(commentId, like);
 };
 const handleComment = event => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    event.stopPropagation();
-    const text = event.path[0].value;
-    const homeCommentId = event.path[3].id;
-    console.log(event.path);
-
+    const target = event.currentTarget;
+    const text = target.value;
+    const homeCommentId = target.parentNode.parentNode.parentNode.id;
     upComment(homeCommentId, text);
-    event.path[0].value = "";
+    target.value = "";
   }
 };
 const handleCommentShow = event => {
   event.preventDefault();
-  event.stopPropagation();
-  event.path[2].lastChild.style.display = "flex";
+  const target = event.currentTarget;
+  target.parentNode.nextSibling.style.display = "flex";
 };
 const handleReCommentShow = event => {
   event.preventDefault();
-  event.stopPropagation();
-  const nickname =
-    event.path[4].lastChild.lastChild.firstChild.lastChild.firstChild;
-  const input = event.path[4].firstChild.lastChild;
+  const target = event.currentTarget;
+  console.log(target);
+
+  const nickname = target.parentNode.previousSibling.lastChild.firstChild;
+  const input =
+    target.parentNode.parentNode.parentNode.previousSibling.lastChild;
+  console.log(nickname);
+
   input.style.color = "#4267b2";
   input.value = `${nickname.innerHTML}  `;
 };
@@ -75,10 +77,12 @@ const init = () => {
   const commentList = Array.from(comment);
   const commentShowList = Array.from(commentShow);
   const reCommentShowList = Array.from(reCommentShow);
-  actionList.map(a => a.addEventListener("click", handleReactLike));
-  commentList.map(c => c.addEventListener("keyup", handleComment));
-  commentShowList.map(s => s.addEventListener("click", handleCommentShow));
-  reCommentShowList.map(r => r.addEventListener("click", handleReCommentShow));
+  actionList.forEach(a => a.addEventListener("click", handleReactLike));
+  commentList.forEach(c => c.addEventListener("keyup", handleComment));
+  commentShowList.forEach(s => s.addEventListener("click", handleCommentShow));
+  reCommentShowList.forEach(r =>
+    r.addEventListener("click", handleReCommentShow)
+  );
 };
 if (actionLike) {
   init();

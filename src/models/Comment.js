@@ -12,7 +12,10 @@ const CommentSchema = new mongoose.Schema({
       ref: "Comment"
     }
   ],
-  createdAt: String,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
   like: {
     type: Number,
     default: 0

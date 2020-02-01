@@ -12,7 +12,6 @@
     flex-direction: column;
     height: 100%;
     align-items: flex-start;
-    padding: 10px;
     width: 180px;
     border-left: 1px solid #cec8c8;
     -webkit-transition: all 0.25s ease-in-out;
@@ -20,5 +19,19 @@
     -ms-transition: all 0.25s ease-in-out;
     -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
+    .friends__list {
+      cursor: pointer;
+      display: flex;
+      padding: 7px;
+      flex-direction: column;
+      width: 100%;
+      .list__info {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .friends__list:hover {
+      background-color: #dcdee2;
+    }
   }
 }

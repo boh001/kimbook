@@ -1,7 +1,7 @@
 const actionLike = document.getElementsByClassName("jsContentLike");
 const video = document.getElementsByTagName("video");
 const comment = document.getElementsByClassName("jsComment");
-const reply = document.getElementsByClassName("reply__button");
+const reply = document.getElementsByClassName("jsShowReply ");
 const upLike = (id, like) => {
   fetch(`/api/${id}/like`, {
     method: "POST",
@@ -50,66 +50,81 @@ const upComment = (id, text, ul, reply) => {
       return res.json();
     })
     .then(myJson => {
-      const avatarUrl = myJson.body.avatar;
-      const replyCount = myJson.body.reply;
+      const { body } = myJson;
+      const {
+        author: { avatarUrl, nickname }
+      } = body;
+
+      const replyCount = body.reply;
       reply.innerText = replyCount;
-      const li = document.createElement("li");
-      const img = document.createElement("img");
-      li.innerHTML = text;
-      img.src = `/${avatarUrl}`;
-      img.style.width = "40px";
-      img.style.height = "40px";
-      ul.appendChild(img);
-      ul.appendChild(li);
+      const div = document.createElement("div");
+      div.className = "comment__list";
+      div.id = body.id;
+      div.innerHTML = `
+      <div class="list__list">
+        <img class="miniAvatar2" src="/${avatarUrl}"/>
+        <div class="list__description">
+          <span class="description__name">${nickname}</span>
+          <span class="description__list">${text}</span>      
+        </div>
+      </div>
+      <div class="list__react">
+        <div class="comment__like jsCommentLike">
+          좋아요
+        </div>
+        <div class="comment__infoLike">
+          <span class="infoLike__count">0</span>
+          <span class="infoLike__sub">개</span>
+        </div>
+        <div class="comment__show jsCommentShow">댓글보기
+        </div>
+      </div>
+      <div class="comment__reComments" style="display:flex">
+        <div class="reComments__user">
+          <img class="miniAvatar2" src= "/${avatarUrl}"/>
+          <input class="user__text jsRecomment" type="text" name="comment" placeholder="please write comments">
+        </div>
+        <div class="reComments__lists">
+        </div>
+      </div>`;
+      ul.appendChild(div);
     })
     .catch(error => {
       console.log(error);
     });
 };
 const handleReactLike = event => {
-  console.log(event.target);
-  console.log(event.currentTarget.children);
-
   event.preventDefault();
-  event.stopPropagation();
-  const element = event.path;
-  const contentLike = element[2].previousSibling;
-  const homeReactLike = contentLike.firstChild.children[1];
-  const homeContentId = element[3].id;
+  const target = event.currentTarget;
+  const homeReactLike = target.parentNode.previousSibling.children[0].lastChild;
+  const homeContentId = target.parentNode.parentNode.id;
   upLike(homeContentId, homeReactLike);
 };
 const handleView = event => {
   event.preventDefault();
-  event.stopPropagation();
-  const element = event.path;
-  const homeContentId = element[1].id;
-  const contentReact = element[1].children[3];
-  const reactInfo = contentReact.lastChild;
-
-  if (video !== 0) {
-    const reactView = reactInfo.lastChild;
-    upView(homeContentId, reactView);
-  } else {
-    const reactView = reactInfo.children[1];
-    upView(homeContentId, reactView);
-  }
+  const target = event.currentTarget;
+  const homeContentId = target.parentNode.id;
+  const reactView = target.nextSibling.children[1].lastChild;
+  upView(homeContentId, reactView);
 };
 const handleComment = event => {
   if (event.keyCode === 13) {
     event.preventDefault();
-    event.stopPropagation();
-    const text = event.path[0].value;
-    const ul = event.path[1].lastElementChild;
-    const reactReply = event.path[3].children[3].lastChild.children[1];
-    const homeContentId = event.path[3].id;
+    const target = event.currentTarget;
+    const text = target.value;
+    const ul = target.parentNode.nextSibling;
+    const reactReply =
+      target.parentNode.parentNode.previousSibling.previousSibling.children[1]
+        .children[1];
+    const homeContentId = target.parentNode.parentNode.parentNode.id;
     upComment(homeContentId, text, ul, reactReply);
-    event.path[0].value = "";
+    target.value = "";
   }
 };
 const handleRelpy = event => {
   event.preventDefault();
-  event.stopPropagation();
-  const contentComments = event.path[2].nextElementSibling;
+  const target = event.currentTarget;
+  const contentComments = target.parentNode.nextSibling;
   contentComments.style.display = "flex";
 };
 const init = () => {
@@ -117,10 +132,10 @@ const init = () => {
   const videoList = Array.from(video);
   const commentList = Array.from(comment);
   const replyList = Array.from(reply);
-  actionList.map(a => a.addEventListener("click", handleReactLike));
-  videoList.map(v => v.addEventListener("play", handleView));
-  commentList.map(c => c.addEventListener("keyup", handleComment));
-  replyList.map(r => r.addEventListener("click", handleRelpy));
+  actionList.forEach(a => a.addEventListener("click", handleReactLike));
+  videoList.forEach(v => v.addEventListener("play", handleView));
+  commentList.forEach(c => c.addEventListener("keyup", handleComment));
+  replyList.forEach(r => r.addEventListener("click", handleRelpy));
 };
 if (actionLike) {
   init();

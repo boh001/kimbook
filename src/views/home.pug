@@ -20,8 +20,6 @@ block content
                         i.fab.fa-github
                         span.option__name Github
                 
-
-                
     .main__home 
         if user
             .home
@@ -64,7 +62,7 @@ block content
                                 .like__icon 
                                     i.far.fa-thumbs-up
                                 .like__button 좋아요
-                            .action__reply 
+                            .action__reply.jsShowReply 
                                 .reply__icon
                                     i.far.fa-comment-dots
                                 .reply__button 댓글
@@ -72,13 +70,13 @@ block content
                                 .share 공유하기
                         .content__comments
                             .comments__user
-                                img.miniAvatar2(src=`/${user.avatarUrl}`, width="40px",height="40px")
+                                img.miniAvatar2(src=`/${user.avatarUrl}`)
                                 input.user__text.jsComment(type="text", name="comment", placeholder="댓글을 입력하세요...")   
                             .comments__lists
                                 each comment in content.comments
                                     .comment__list(id=comment._id)
                                         .list__list
-                                            img.miniAvatar2(src=`/${comment.author.avatarUrl}`, width="40px",height="40px")
+                                            img.miniAvatar2(src=`/${comment.author.avatarUrl}`)
                                             .list__description
                                                 span.description__name #{comment.author.nickname}
                                                 span.description__text=comment.description
@@ -90,13 +88,13 @@ block content
                                             .comment__show.jsCommentShow 댓글보기
                                         .comment__reComments
                                             .reComments__user
-                                                img.miniAvatar3(src=`/${user.avatarUrl}`, width="40px",height="40px")
+                                                img.miniAvatar3(src=`/${user.avatarUrl}`)
                                                 input.user__text.jsReComment(type="text", name="comment", placeholder="please write comments")
                                             .reComments__lists
                                                 each reComment in comment.comments
                                                     .comment__list(id=reComment._id)
                                                         .list__list
-                                                            img.miniAvatar3(src=`/${reComment.author.avatarUrl}`, width="40px",height="40px")
+                                                            img.miniAvatar3(src=`/${reComment.author.avatarUrl}`)
                                                             .list__description
                                                                 span.description__name #{comment.author.nickname}
                                                                 span.description__text=reComment.description

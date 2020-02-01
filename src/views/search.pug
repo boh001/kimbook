@@ -3,20 +3,20 @@ block content
     .search__filters
         .filters__options
     .search__results
-        each user in users
-            .result__people(id=user.id)
+        each p in people
+            .result__people(id=p.id)
                 .people__avatar
-                    img.avatar(src=`/${user.avatarUrl}`)
+                    img.avatar(src=`/${p.avatarUrl}`)
                 .people__info
                     .info__name
-                        h1.name=user.name
+                        h1.name=p.name
                         button.plus__friend.jsPlusFriend
                             i.fas.fa-user-friends
                             h1 친구 추가
                     .info__nickname
-                        h1=user.nickname
+                        h1=p.nickname
                     .info__email
-                        h1=user.email
+                        h1=p.email
                     .info__friend
                         h1.friend 함께 아는 친구 
                         h1 0

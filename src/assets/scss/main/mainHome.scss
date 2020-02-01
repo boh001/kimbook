@@ -53,6 +53,9 @@
       justify-content: center;
       align-items: center;
       height: 50px;
+      input {
+        cursor: pointer;
+      }
     }
     &:hover {
       -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
@@ -108,7 +111,9 @@
     }
     .content__main {
       object-fit: cover;
+      height: 480px;
     }
+
     .content__react {
       display: flex;
       justify-content: space-between;
@@ -136,6 +141,7 @@
       }
     }
     .content__action {
+      cursor: pointer;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -235,6 +241,7 @@
           }
         }
         .list__react {
+          cursor: pointer;
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -299,6 +306,7 @@
               }
             }
             .list__react {
+              cursor: pointer;
               display: flex;
               justify-content: flex-start;
               align-items: center;
