@@ -13,7 +13,11 @@ const chatRoomSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Message"
     }
-  ]
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const model = mongoose.model("ChatRoom", chatRoomSchema);
