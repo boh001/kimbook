@@ -3,11 +3,11 @@ import dotenv from "dotenv";
 dotenv.config();
 import app from "./app";
 import "./db";
-import "./models/User";
-import "./models/Message";
-import "./models/Content";
-import "./models/Comment";
 import "./models/ChatRoom";
+import "./models/Comment";
+import "./models/Content";
+import "./models/Message";
+import "./models/User";
 import socketIO from "socket.io";
 import SocketController from "./controllers/socketCon";
 
