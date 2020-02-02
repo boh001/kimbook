@@ -1,6 +1,6 @@
 import events from "../socketEvent";
-import ChatRoom from "../models/ChatRoom";
-import Message from "../models/Message";
+import ChatRoom from "../models/chatRoom";
+import Message from "../models/message";
 import User from "../models/User";
 
 export const JoinRoom = async (socket, { roomId, idList, me }) => {

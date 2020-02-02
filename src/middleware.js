@@ -3,7 +3,7 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 import User from "./models/User";
-import ChatRoom from "./models/ChatRoom";
+import ChatRoom from "./models/chatRoom";
 import events from "./socketEvent";
 export const globalVariable = async (req, res, next) => {
   res.locals.routes = routes;
