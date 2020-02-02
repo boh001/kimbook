@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const db = mongoose.connection;
-const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = process.env.MONGOALTAS;
 db.on("error", () => console.log("DB connection Error!!"));
 db.once("open", () => console.log("Connected to mongoDB"));
 mongoose.connect(MONGO_URL, {
