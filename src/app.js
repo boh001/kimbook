@@ -13,6 +13,8 @@ import { globalVariable } from "./middleware";
 import "./passport";
 import userRouter from "./routers/userRouter";
 import apiRouter from "./routers/apiRouter";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
@@ -29,7 +31,7 @@ app.use(cookieParser());
 const SessionStore = MongoStore(session);
 app.use(
   session({
-    secret: "@#@$MYSIGN#@$#$",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     store: new SessionStore({ mongooseConnection: mongoose.connection })
