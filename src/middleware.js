@@ -75,9 +75,15 @@ const upload = multer({
       cb(null, Date.now().toString());
     },
     bucket: (req, file, cb) => {
-      const {
-        user: { nickname }
-      } = req;
+      if (!req.user) {
+        var {
+          body: { nickname }
+        } = req;
+      } else {
+        var {
+          user: { nickname }
+        } = req;
+      }
       const { mimetype } = file;
       const bucket = `kimbook/${nickname}/${mimetype.split("/")[0]}`;
       cb(null, bucket);
