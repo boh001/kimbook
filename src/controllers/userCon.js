@@ -11,7 +11,7 @@ export const postJoin = async (req, res, next) => {
     body: { name, nickname, email, password, password2 }
   } = req;
   const {
-    file: { path }
+    file: { location }
   } = req;
 
   const keyOne = crypto
@@ -30,7 +30,7 @@ export const postJoin = async (req, res, next) => {
   } else {
     try {
       const newUser = await User({
-        avatarUrl: path,
+        avatarUrl: location,
         name,
         nickname,
         email,
