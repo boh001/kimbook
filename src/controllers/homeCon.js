@@ -33,9 +33,10 @@ export const postHome = async (req, res) => {
   const {
     body: { text }
   } = req;
+  console.log(req.file);
 
   const {
-    file: { path, mimetype }
+    file: { location, mimetype }
   } = req;
 
   const {
@@ -44,7 +45,7 @@ export const postHome = async (req, res) => {
   try {
     await Content.create({
       authorId: id,
-      fileUrl: path,
+      fileUrl: location,
       contentType: mimetype,
       text
     });

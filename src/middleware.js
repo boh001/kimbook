@@ -71,7 +71,17 @@ const upload = multer({
   storage: multerS3({
     s3,
     acl: "public-read",
-    bucket:`kimbook/${}`
-
-}) });
+    key: (req, file, cb) => {
+      cb(null, Date.now().toString());
+    },
+    bucket: (req, file, cb) => {
+      const {
+        user: { nickname }
+      } = req;
+      const { mimetype } = file;
+      const bucket = `kimbook/${nickname}/${mimetype.split("/")[0]}`;
+      cb(null, bucket);
+    }
+  })
+});
 export const contentUpload = upload.single("content");
