@@ -17,7 +17,7 @@ header.header
                 a(href=routes.login) 로그인
         else
             .users__avatar
-                img.miniAvatar3(src=`/${user.avatarUrl}`)
+                img.miniAvatar3(src=`${user.avatarUrl}`)
             .users__join 
                 a#jsUsersJoin(href=routes.profile(user.id))=user.nickname
             .users__login

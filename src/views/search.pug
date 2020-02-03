@@ -6,7 +6,7 @@ block content
         each p in people
             .result__people(id=p.id)
                 .people__avatar
-                    img.avatar(src=`/${p.avatarUrl}`)
+                    img.avatar(src=`${p.avatarUrl}`)
                 .people__info
                     .info__name
                         h1.name=p.name
