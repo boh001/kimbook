@@ -28,7 +28,7 @@ block content
                 form(action=routes.home, method="post",enctype="multipart/form-data")
                     .home__write
                         a.write__avatar(href=routes.profile(user.id))
-                            img.write__avatar(src=`/${user.avatarUrl}`)
+                            img.write__avatar(src=`${user.avatarUrl}`)
                         input.write__text(type="text", name="text", placeholder=`${user.nickname}님, 무슨 생각을 하고 계신가요?`)
                     .home__writeContent
                         input.writeContent__source(type="file", name="content")
@@ -38,7 +38,7 @@ block content
                     .home__content(id=content.id)
                         .content__info
                             .info__author
-                                img.miniAvatar(src=`/${content.authorId.avatarUrl}`)
+                                img.miniAvatar(src=`${content.authorId.avatarUrl}`)
                                 h1.author__name=content.authorId.nickname
                             h1=content.createdAt
                         .content__text=content.text
@@ -70,13 +70,13 @@ block content
                                 .share 공유하기
                         .content__comments
                             .comments__user
-                                img.miniAvatar2(src=`/${user.avatarUrl}`)
+                                img.miniAvatar2(src=`${user.avatarUrl}`)
                                 input.user__text.jsComment(type="text", name="comment", placeholder="댓글을 입력하세요...")   
                             .comments__lists
                                 each comment in content.comments
                                     .comment__list(id=comment._id)
                                         .list__list
-                                            img.miniAvatar2(src=`/${comment.author.avatarUrl}`)
+                                            img.miniAvatar2(src=`${comment.author.avatarUrl}`)
                                             .list__description
                                                 span.description__name #{comment.author.nickname}
                                                 span.description__text=comment.description
@@ -88,13 +88,13 @@ block content
                                             .comment__show.jsCommentShow 댓글보기
                                         .comment__reComments
                                             .reComments__user
-                                                img.miniAvatar3(src=`/${user.avatarUrl}`)
+                                                img.miniAvatar3(src=`${user.avatarUrl}`)
                                                 input.user__text.jsReComment(type="text", name="comment", placeholder="please write comments")
                                             .reComments__lists
                                                 each reComment in comment.comments
                                                     .comment__list(id=reComment._id)
                                                         .list__list
-                                                            img.miniAvatar3(src=`/${reComment.author.avatarUrl}`)
+                                                            img.miniAvatar3(src=`${reComment.author.avatarUrl}`)
                                                             .list__description
                                                                 span.description__name #{comment.author.nickname}
                                                                 span.description__text=reComment.description

@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import qs from "querystring";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -17,6 +18,6 @@ export const mailOptions = (host, nickname, to, key) => {
     subject: `Hello ${nickname}, please verify your email`,
     html:
       "<p>아래의 링크를 클릭해주세요 !</p>" +
-      `<a href="http://${host}/auth/?key=${key}">인증하기</a>`
+      `<a href="http://${host}/auth/?key=${qs.escape(key)}">인증하기</a>`
   };
 };

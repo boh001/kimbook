@@ -3,7 +3,6 @@ import User from "../models/User";
 import passport from "passport";
 import crypto from "crypto";
 import { transporter, mailOptions } from "../nodemailer";
-import querystring from "querystring";
 
 export const getJoin = (req, res) => res.render("join");
 export const postJoin = async (req, res, next) => {
@@ -22,7 +21,7 @@ export const postJoin = async (req, res, next) => {
     .randomBytes(256)
     .toString("base64")
     .substr(50, 5);
-  const verifyKey = encodeURIComponent(`${keyOne + keyTwo}`);
+  const verifyKey = `${keyOne + keyTwo}`;
   req.body.verifyKey = verifyKey;
   if (password !== password2) {
     res.staus(404);
@@ -68,7 +67,7 @@ export const getAuth = async (req, res) => {
   } = req;
   console.log(key);
 
-  const user = await User.find({ verifyKey: key });
+  const user = await User.find({ verifyKey: encodeURIComponent(key) });
   console.log(user);
 
   if (user.length !== 0) {
