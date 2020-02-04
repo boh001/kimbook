@@ -7,7 +7,7 @@
                         .members__members
                             each m in chat.members
                                 .members__info
-                                    img.miniAvatar2(src=`/${m.avatarUrl}`)
+                                    img.miniAvatar2(src=`${m.avatarUrl}`)
                                     h1=m.nickname
                         .members__btn
                             .btn__close
@@ -20,7 +20,7 @@
                                     .user__text=msg.description
                             else
                                 .msg__user
-                                    img.miniAvatar3(src=`/${msg.author.avatarUrl}`)
+                                    img.miniAvatar3(src=`${msg.author.avatarUrl}`)
                                     .user__text=msg.description
                     .room__input
                         input.input__text.jsSendMsg(type="text",placeholder="메시지를 입력하세요")

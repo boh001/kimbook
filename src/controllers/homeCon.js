@@ -3,6 +3,8 @@ import Content from "../models/Content";
 import User from "../models/User";
 
 export const getHome = async (req, res) => {
+  console.log(req);
+
   const contents = await Content.find({}).populate([
     {
       path: "comments",
