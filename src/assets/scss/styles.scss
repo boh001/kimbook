@@ -55,6 +55,9 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  a {
+    color: $fb_white;
+  }
   a:visited {
     color: $fb_white;
   }

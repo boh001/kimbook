@@ -1285,5 +1285,7 @@ input:focus {
      -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center; }
+  .header a {
+    color: #fff; }
   .header a:visited {
     color: #fff; }

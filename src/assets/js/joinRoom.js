@@ -9,14 +9,14 @@ const handleJoinBtn = event => {
   const other = target.id;
   let idList = [me, other].sort();
   const roomId = `${idList[0]}/${idList[1]}`;
+  const socket = io("/");
+  initSocket(socket);
+  getSocket().emit(window.events.JoinRoom, { roomId, idList, me });
   const openRoom = document.getElementById(roomId);
   openRoom.style.display = "block";
   openRoom.style.height = "45px";
   openRoom.children[1].style.display = "none";
   openRoom.children[2].style.display = "none";
-  const socket = io("/");
-  initSocket(socket);
-  getSocket().emit(window.events.JoinRoom, { roomId, idList, me });
 };
 
 const init = () => {
