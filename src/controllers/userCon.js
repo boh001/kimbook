@@ -65,11 +65,7 @@ export const getAuth = async (req, res) => {
   const {
     query: { key }
   } = req;
-  console.log(key);
-
   const user = await User.find({ verifyKey: encodeURIComponent(key) });
-  console.log(user);
-
   if (user.length !== 0) {
     await User.findOneAndUpdate({ verifyKey: key }, { emailVerified: true });
     res.render("auth", { verify: '"Success"' });
@@ -79,10 +75,12 @@ export const getAuth = async (req, res) => {
 };
 
 export const getLogin = (req, res) => res.render("login");
+
 export const postLogin = passport.authenticate("local", {
-  failureRedirect: routes.login,
-  successRedirect: routes.home
+  successRedirect: routes.home,
+  failureRedirect: routes.login
 });
+
 export const checkAuth = async (req, res, next) => {
   const {
     body: { nickname }
@@ -94,7 +92,11 @@ export const checkAuth = async (req, res, next) => {
     res.redirect(routes.login);
   }
 };
-export const logout = (req, res) => {
+export const logout = async (req, res) => {
+  const {
+    user: { id }
+  } = req;
+  await User.findOneAndUpdate({ _id: id }, { login: false });
   req.logout();
   res.redirect(routes.home);
 };
