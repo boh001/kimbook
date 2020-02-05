@@ -4,15 +4,7 @@ import passport from "passport";
 import crypto from "crypto";
 import { transporter, mailOptions } from "../nodemailer";
 
-export const getJoin = (req, res) => res.render("join");
-export const postJoin = async (req, res, next) => {
-  const {
-    body: { name, nickname, email, password, password2 }
-  } = req;
-  const {
-    file: { location }
-  } = req;
-
+export const getJoin = (req, res) => {
   const keyOne = crypto
     .randomBytes(256)
     .toString("hex")
@@ -22,6 +14,18 @@ export const postJoin = async (req, res, next) => {
     .toString("base64")
     .substr(50, 5);
   const verifyKey = `${keyOne + keyTwo}`;
+  res.render("join", { verifyKey });
+};
+export const postJoin = async (req, res, next) => {
+  const {
+    body: { name, nickname, email, password, password2, verifyKey }
+  } = req;
+  console.log(req.body.verifyKey);
+
+  const {
+    file: { location }
+  } = req;
+
   req.body.verifyKey = verifyKey;
   if (password !== password2) {
     res.staus(404);
