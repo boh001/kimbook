@@ -62,7 +62,7 @@ const upComment = (id, text, ul, reply) => {
       div.id = body.id;
       div.innerHTML = `
       <div class="list__list">
-        <img class="miniAvatar2" src="/${avatarUrl}"/>
+        <img class="miniAvatar2" src="${avatarUrl}"/>
         <div class="list__description">
           <span class="description__name">${nickname}</span>
           <span class="description__list">${text}</span>      
@@ -81,7 +81,7 @@ const upComment = (id, text, ul, reply) => {
       </div>
       <div class="comment__reComments" style="display:flex">
         <div class="reComments__user">
-          <img class="miniAvatar2" src= "/${avatarUrl}"/>
+          <img class="miniAvatar2" src= "${avatarUrl}"/>
           <input class="user__text jsRecomment" type="text" name="comment" placeholder="please write comments">
         </div>
         <div class="reComments__lists">
