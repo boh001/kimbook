@@ -1,6 +1,14 @@
 .header__users {
   display: flex;
   align-items: center;
+  font-size: 12px;
+  .users__avatar {
+    .avatar__img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+  }
   .users__join {
     margin-right: 10px;
   }
