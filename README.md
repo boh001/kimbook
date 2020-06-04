@@ -1,6 +1,6 @@
 # kimbook
 
-Frontend - vanila javascript </br>
+Frontend - pug + vanila javascript </br>
 Backend - nodejs express
 
 ## function
